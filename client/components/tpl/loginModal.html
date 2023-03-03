@@ -1,0 +1,52 @@
+<script type="text/ng-template" id="loginModal.html">
+ 
+        <div class="modal-body">
+			 <button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+			<form ng-show="currentTab==='login'" id="test-form" class="white-popup-block" ng-submit="loginUser()">
+				<div class="inner-container login-panel">
+					
+					<h3 class="m_title">SIGN IN YOUR ACCOUNT TO HAVE ACCESS TO DIFFERENT FEATURES</h3>
+					<form id="login_form" name="login_form" >
+						<a style="cursor:pointer" class="create_account golden-bg" ng-click="goToRegister()">CREATE ACCOUNT</a>
+						<input type="email" id="email" name="email" class="form-control" placeholder="Email" ng-model="login.email" required>
+						<input type="password" id="password" name="password" class="form-control" placeholder="Password" ng-model="login.password" required>
+						<input type="submit" id="login" name="submit" value="LOG IN" class="golden-bg">
+				<!--    <a href="#" class="login_facebook">login with facebook</a>   -->
+					</form>
+					<div class="links">
+						<a style="cursor:pointer" class="popup-with-form2" ng-click="navigate('resetpassword')">FORGOT YOUR PASSWORD?
+						</a>
+					</div>
+				</div>
+			</form>
+			<form ng-show="currentTab==='resetpassword'" id="resetpassword-form" class="white-popup-block" ng-submit="sendVerificationLink()">
+				<div><h3 style="color:#162643;">Find Your Account</h3></div>
+				<div class="hr"><hr /></div>
+				  <div style="padding-top:25px;padding-left:25px">
+					<label class="bs-callout labelStyle" ng-show="inprogress">We are sending mail to {{temporaryEmail}}...</label>
+
+					<label class="bs-callout labelStyle" style="padding-left:10px;background-color:#dff0d8" ng-show="sentEmail">We have successfully sent an mail to <b>{{temporaryEmail}}</b></label>
+					<label ng-show="invalidEmail" class="bs-callout-red labelStyle" style="padding-left:10px;background-color:#dff0d8">This Email is not registered</label>
+				  </div>
+				<div class="inner-container login-panel">
+				
+				  <form id="reset_form" name="reset_form" style="margin-top:25px;">
+			
+						<input style="padding-left:10px;width:50%" type="email" id="email" name="email" class="form-control" placeholder="Email" ng-model="reset.email" required>
+						<input type="submit" id="reset" name="submit" value="SEND" class="golden-bg">
+						<div class="links">
+						<a style="cursor:pointer" class="popup-with-form2" ng-click="navigate('login')">SIGN IN
+						</a> <br />
+						<label ng-show="sentEmail" style="color:#898989"> <b>NOTE:</b>  If you have not received an email, please call us on +91 - 9845830694 </label>
+						</div>
+
+				   </form>
+
+					
+
+					
+				</div>
+			</form>
+        </div>
+        
+    </script> 

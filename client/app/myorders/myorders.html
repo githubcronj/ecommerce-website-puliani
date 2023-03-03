@@ -1,0 +1,166 @@
+<ng-include src="'app/myorders/modal/trackingorder.html'"></ng-include>
+<div class="kl-store kl-store-page single-product">
+<section id="content" class="hg_section ptop-40" style="min-height:400px !important">          
+			<div class="container">
+				<div class="row">
+					<div class="right_sidebar col-md-12">
+						<div class="kl-title-block clearfix text-left tbk-symbol--line  tbk-icon-pos--after-title">
+							<h2 class="tbk__title montserrat fs-34 fw-semibold black">My Orders</h2>
+							<span class="tbk__symbol ">
+								<span></span>
+							</span>
+							<h4 class="tbk__subtitle fs-22 fw-thin">Let's see what we've got inside.</h4>
+						</div>
+						
+						<div class="text_box" ng-if="myorders.length==0">
+							<p>You haven't shopped for anything yet.</p>
+						    <input type="button" class="button golden-bg" name="update_cart" value="Continue Shopping" ui-sref="main">
+						</div>
+					</div>	
+				</div>	
+
+				 <div class="wishlist" ng-if="myorders.length>0">
+					<uib-accordion close-others="false">
+						<uib-accordion-group style="cursor:pointer"   is-open="value.isopen"  ng-repeat="(key,value) in myorders track by $index" ng-init="value.isopen=false">
+
+							<uib-accordion-heading ng-click="value.isopen=!value.isopen">
+								
+								<button style="cursor:pointer;min-width: 200px;margin-right:35px" ng-if="value.shipment.tracking_number" class="button golden-bg" ng-click="openModal('md',$event,value.shipment.tracking_number)">
+								
+									TRACK ORDER
+
+								</button>
+
+								&nbsp;&nbsp;
+								
+								<span  style="cursor:pointer" ng-if="!value.shipment.tracking_number && value.orderInfo.status!='payment failed'">
+								
+									<b style="color:green">
+										Order not yet dispatched
+									</b>
+									
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									
+									<label>
+										Order Id: &nbsp
+									</label>
+									
+									<label style="min-width:320px;font-weight: 500;"> {{value.orderInfo.order_number}} </label>,
+
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									
+									<label>
+										Ordered on &nbsp
+									</label> 
+
+									{{value.orderInfo.created_at | date}}
+								
+								</span>
+
+								<span  style="cursor:pointer" ng-if="value.orderInfo.status == 'payment failed'">
+
+									<label style="color:red;min-width:200px !important;">
+									
+										<b>
+											Payment Failed
+										</b>
+									
+									</label>
+
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									
+									<label>Order Id: &nbsp</label>
+									
+									<label style="min-width:300px;font-weight: 500;">{{value.orderInfo.order_number}}</label>,
+
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									
+									<label>
+										Ordered on &nbsp
+									</label> 
+
+									{{value.orderInfo.created_at | date}}	
+
+								</span>
+
+								<!--<span style="cursor:pointer" ng-if="!value.isopen" class="hidden-xs">Total {{value.products.length}} <span ng-if="value.products.length==1">Item</span><span ng-if="value.products.length>1">Items</span></span><span style="height:38px">&nbsp;</span>-->
+								<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': value.isopen, 'glyphicon-chevron-right': !value.isopen}"></i>
+								
+								<span  ng-if="value.shipment.tracking_number" class="hidden-xs" style="cursor:pointer;padding-right:39px" >
+									
+									<b> 
+										Order Id:
+									</b>
+
+									<label style="min-width:300px">
+										<span style="font-weight:500"  ng-bind-html="value.orderInfo.order_number">
+									</label>
+
+									</span>
+								</span>
+								
+								
+								
+								<span  ng-if="value.shipment.tracking_number"  class="hidden-xs" style="cursor:pointer;padding-right:39px">
+									
+									<b style="min-width:320px;">
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;									
+									Orderd On: 
+									
+									</b>
+
+									<span style="font-weight:500"  ng-bind-html="value.orderInfo.created_at | date"></span>
+								</span>
+
+							   <span   class="pull-right hidden-xs" style="cursor:pointer;padding-right:39px" ng-if="!value.isopen">
+							   		Order Total: 
+							   		<span style="font-weight:bold"  ng-bind-html="value.orderInfo.total_discount_price | currency : currencyType">
+							   			
+							   		</span>
+							   	</span>
+
+							</uib-accordion-heading>
+                      
+						<div class="row" style="border-bottom:1px solid #CCCCCC;padding:20px" ng-repeat="(key,product) in value.products track by $index">
+							<div class="col-md-2">
+								<div ng-repeat="(key,image) in product.images  track by $index">
+									<div ng-if="image.type=='cover'">
+                                        <a ui-sref="product({id:product.id,name:product.name})" >
+										  <img class="kw-prodimage-img-secondary" src="{{image.url}}" alt="{{book.name}}" title="{{book.name}}">
+                                        </a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<a ui-sref="product({id:product.id,name:product.name})" style="line-height:2;font-size:15px">{{product.name}}</a><br/>
+								<span  style="line-height:2;font-size:13px">Quantity: {{product.quantity}}</span><br/>
+								<span  style="line-height:2;font-size:15px">Status: <span style="font-weight:bold;color:green">{{value.orderInfo.status}}</span></span>
+							</div>
+							<div class="col-md-2">
+								<span ng-bind-html="product.discount_price | currency : currencyType"></span><span>&nbsp;/&nbsp;unit</span>
+							</div>
+							<!-- <div class="col-md-4">
+								<span>Estimated Delivery:  {{value.orderInfo.estimated_delivery_date | date : "EEE, d MMM'''yy"}}</span>
+							</div -->
+						</div>
+						
+						<div class="row" style="padding:20px">
+							<div class="pull-right">
+								<span>Order Total: <span style="font-weight:bold"  ng-bind-html="value.orderInfo.total_discount_price | currency : currencyType"></span></span>
+							</div>
+						</div> 
+						</uib-accordion-group>
+					</uib-accordion>
+				</div>
+			</div>
+		</section>
+</div>
+
+</div>
+ <div infinite-scroll="myPagination()" infinite-scroll-disabled="isScrollDisabled">
+
+           

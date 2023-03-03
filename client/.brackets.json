@@ -1,0 +1,5 @@
+{
+    "jscodehints.detectedExclusions": [
+        "D:/works/puliani-book-store/client/bower_components/angular-local-storage/dist/angular-local-storage.min.js"
+    ]
+}

@@ -1,0 +1,64 @@
+<script type="text/ng-template" id="sendCoupon.html">
+
+      <div class="modal-body paddingTop">
+			<span style="font-weight:bold;font-size:16px;text-transform:uppercase">Send Coupon</span>
+
+      <button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+				<hr style="border-top:1px solid black;margin-top:10px;margin-bottom:10px"/>
+				<form  class="form-horizontal" ng-submit="onCouponSend(data)">
+				<fieldset>
+       
+        <div ng-if="!data.sendAll" class="form-group">
+            <label class="col-md-4 control-label" for="address">Mobile No's:</label>
+            <div class="col-md-5">
+                <textarea class="form-control" placeholder="Enter mobile no's" id="description" name="description" ng-model="$parent.data.mobnos" required></textarea>
+                <span style="font-style:italic">Send to multiple persons by seperating the mobile no's with a comma(,)</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="address">Custom Message</label>
+            <div class="col-md-5">
+                <textarea class="form-control" placeholder="Enter Custom Message to be sent"  id="description" name="description" ng-model="data.customMessage"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label class="col-md-4 control-label" for=""></label>
+            <div class="col-sm-4 col-md-4">
+             <div class="checkbox">
+                <label class="checkbox-inline"><input name="sendAll" ng-model="data.sendAll" type="checkbox" value="">Send All</label>
+                  <button id="" name=""  class="pull-right btn btn-primary golden-border-clr golden-bg-clr ">SEND</button>
+                 </div>
+       
+               
+
+            </div>
+        </div>
+                    
+	</fieldset>
+	</form>
+   </div>
+
+</script>
+
+<script type="text/ng-template" id="confirmationBox.html">
+  <div class="modal-body paddingConfirmation">
+
+    <button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+      <hr style="border-top:1px solid black;margin-top:10px;margin-bottom:10px"/>
+   <div class="modal-header">
+      <h3>Confirmation</h3>
+   </div>
+   <div class="modal-body">
+      <p>Are you sure to delete this coupen</p>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-danger"
+            ng-click="deleteCoupon(true)">Yes</button>
+      <button type="button" class="btn btn-primary"
+            ng-click="deleteCoupon(false)">No</button>
+
+</div>
+</script>

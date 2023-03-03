@@ -1,0 +1,117 @@
+<div class="page-sidebar-wrapper">
+                <!-- BEGIN SIDEBAR -->
+                <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+                    <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+                    <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+                    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                    <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+                    <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                     
+
+
+                        <li class="nav-item  active open">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-basket"></i>
+                                <span class="title" style="cursor:default">eCommerce</span>
+                                <span class="selected"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <!-- <li ng-class="currentUrl === 'dashboard' ? 'nav-item active open' : 'nav-item'">
+                                    <a ui-sref="index.dashboard" ng-click="clickAncor('dashboard')"  class="nav-link ">
+                                        <i class="icon-home"></i>
+                                        <span class="title">Dashboard</span>
+                                        <span class="selected"></span>
+                                    </a>
+                                </li> -->
+                                <!-- <li ng-class="currentUrl === 'orders' ? 'nav-item active open' : 'nav-item'">
+                                    <a  ui-sref="index.orders" ng-click="clickAncor('orders')" class="nav-link ">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Orders</span>
+                                    </a>
+                                </li> -->
+                                <li ng-class="currentUrl === 'orderview' ? 'nav-item active open' : 'nav-item'">
+                                    <a  ui-sref="index.orderview({pageno: 1,attribute:'o.created_at',direction:'DESC',filter:'all'})" ng-click="clickAncor('orderview')" class="nav-link ">
+                                        <i class="icon-tag"></i>
+                                        <span class="title">Order View</span>
+                                    </a>
+                                </li>
+							   <li ng-class="currentUrl === 'banners' ? 'nav-item active open' : 'nav-item'">
+                                    <a ui-sref="index.banners({pageno: 1,attribute:'id',direction:'DESC'})" ng-click="clickAncor('banners')" class="nav-link ">
+                                        <span class="glyphicon glyphicon-bookmark"></span>
+                                        <span class="title">Banners</span>
+
+                                    </a>
+                                </li>
+                                <li ng-class="currentUrl === 'products' ? 'nav-item active open' : 'nav-item'">
+                                    <a  ui-sref="index.products({pageno: 1,attribute:'id',direction:'DESC'})" ng-click="clickAncor('products')" class="nav-link ">
+                                        <i class="icon-graph"></i>
+                                        <span class="title">Product Listing</span>
+                                    </a>
+                                </li>
+                                <li ng-class="currentUrl === 'productedit' ? 'nav-item active open' : 'nav-item'">
+                                    <a ui-sref="index.productedit({id:null,type:'add'})" ng-click="clickAncor('productedit')" class="nav-link ">
+                                        <i class="icon-note"></i>
+                                        <span class="title">Create Product</span>
+                                    </a>
+                                </li>
+                               
+                                <li ng-class="currentUrl === 'coupon' ? 'nav-item active open' : 'nav-item'">
+                                    <a ui-sref="index.coupon({pageNumber: 1,attribute:'id',direction:'DESC'})" ng-click="clickAncor('coupon')" class="nav-link ">
+                                        <i class="icon-magic-wand"></i>
+                                        <span class="title">Coupons</span>
+                                    </a>
+                                </li>
+								<li ng-class="currentUrl === 'categories' ? 'nav-item active open' : 'nav-item'">
+                                    <a ui-sref="index.categories({pageno: 1,attribute:'id',direction:'DESC'})" ng-click="clickAncor('categories')" class="nav-link ">
+                                        <i class="fa fa-tags"></i>
+                                        <span class="title">Categories</span>
+                                    </a>
+                                </li>
+
+                                <li ng-class="currentUrl === 'news' ? 'nav-item active open' : 'nav-item'">
+                                    <a ui-sref="index.news({pageNumber: 1,attribute:'id',direction:'DESC'})" ng-click="clickAncor('news')" class="nav-link ">
+                                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                        <span class="title">News</span>
+									</a>
+                                  </li>
+								<li ng-class="currentUrl === 'users' ? 'nav-item active open' : 'nav-item'">
+                                    <a ui-sref="index.users({pageno: 1,attribute:'id',direction:'DESC'})" ng-click="clickAncor('users')" class="nav-link ">
+                                        <i class="fa fa-user"></i>
+                                        <span class="title">Users</span>
+
+                                    </a>
+                                </li>
+                                <li ng-class="currentUrl === 'bulkupload' ? 'nav-item active open' : 'nav-item'">
+                                    <a ui-sref="index.bulkupload" ng-click="clickAncor('bulkupload')" class="nav-link ">
+                                        <i class="fa fa-user"></i>
+                                        <span class="title">Bulk Upload</span>
+
+                                    </a>
+                                </li>
+                               <li ng-class="currentUrl === 'bulkenquiry' ? 'nav-item active open' : 'nav-item'">
+                                    <a ui-sref="index.bulkenquiry({pageno: 1,attribute:'id',direction:'DESC'})" ng-click="clickAncor('bulkenquiry')" class="nav-link ">
+                                        <i class="fa fa-truck"></i>
+                                        <span class="title">Bulk Enquiries</span>
+
+                                    </a>
+                                </li>
+                                  <li ng-class="currentUrl === 'feedback' ? 'nav-item active open' : 'nav-item'">
+                                    <a ui-sref="index.feedback({pageno: 1,attribute:'id',direction:'DESC'})" ng-click="clickAncor('feedback')" class="nav-link ">
+                                        <i class="fa fa-commenting-o"></i>
+                                        <span class="title">Feedbacks</span>
+
+                                    </a>
+                                </li>
+                            </ul>
+
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                    <!-- END SIDEBAR MENU -->
+                </div>
+                <!-- END SIDEBAR -->
+            </div>

@@ -1,0 +1,18 @@
+  <script type="text/ng-template" id="confirmationBox.html">
+    <div class="modal-body">
+
+      <button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+     <div class="modal-header">
+        <h3>Confirmation</h3>
+     </div>
+     <div class="modal-body">
+        <p>{{confirmationMessage}}</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-danger"
+              ng-click="deleteNews(true)">Yes</button>
+        <button type="button" class="btn btn-primary"
+              ng-click="close()">No</button>
+
+  </div>
+  </script>

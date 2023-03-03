@@ -1,0 +1,20 @@
+<script type="text/ng-template" id="imageDisplay.html">
+
+      <div class="modal-body">
+        <button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+        <h5>
+            <b ng-if="images[index].type ==='cover'" >Cover Image</b>
+            <b ng-if="images[index].type !='cover'" >Image-{{index}}</b>
+        </h5>
+        <hr />
+        <button type="button" ng-click="changeImage(index-1)"><i class="focusClass fa fa-arrow-left" aria-hidden="true"></i></button>
+
+      <!--   <img class="zoomImage" src="{{images[index].url_orignal}}"></img> -->
+         <img src="{{images[index].url}}" style="width:90%;height:100%" />
+
+        <button type="button" ng-click="changeImage(index+1)"><i class="focusClass fa fa-arrow-right " aria-hidden="true"></i></button>
+
+      </div>
+
+
+  </script>

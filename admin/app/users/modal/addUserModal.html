@@ -1,0 +1,77 @@
+<script type="text/ng-template" id="addUserModal.html">
+   
+	 <div class="modal-body">
+		<span style="font-weight:bold;font-size:16px">Add Admin User</span>
+		<button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+<hr style="border-top:1px solid black;margin-top:10px;margin-bottom:10px"/>
+<form class="form-horizontal" ng-submit="onUserSubmit()">
+<fieldset>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="firstname">First Name</label>  
+  <div class="col-md-5">
+  <input id="firstname" name="textinput" type="text" placeholder="Enter first name" class="form-control input-md" required="" ng-model="user.first_name">
+    
+  </div>
+</div>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="lastname">Last Name</label>  
+  <div class="col-md-5">
+  <input id="city" name="city" type="text" placeholder="Enter last name" class="form-control input-md" required="" ng-model="user.last_name">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="email">Email</label>  
+  <div class="col-md-5">
+  <input id="state" name="state" type="email" placeholder="Enter Email" class="form-control input-md" required="" ng-model="user.email">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="mobno">Mobile Number</label>  
+	<div class="col-md-5">
+		<div class="input-group">
+			<span class="input-group-addon">+91</span>
+			<input id="mobno" name="mobno" type="number" placeholder="Enter Mobile Number" class="form-control input-md"  ng-model="user.mobilenumber">
+		</div>
+	</div>
+</div>
+
+<!-- Prepended text-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="password">Password</label>
+	<div class="col-md-5">
+		<input id="password" name="password" class="form-control" placeholder="Enter Password" type="password" required="" ng-model="user.password">
+	</div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="cpassword">Confirm Password</label>  
+  <div class="col-md-5">
+  <input id="cpassword" name="cpassword" type="password" placeholder="Confirm Password" class="form-control input-md" ng-model="user.cpassword">
+    
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for=""></label>
+  <div class="col-md-4">
+    <button type="submit" id="" name="" class="btn btn-primary golden-border-clr golden-bg-clr ">SAVE</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+        </div>
+	
+</script>

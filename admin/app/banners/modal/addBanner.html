@@ -1,0 +1,54 @@
+<script type="text/ng-template" id="addBanner.html">
+   
+<div class="modal-body">
+		<span style="font-weight:bold;font-size:16px">Add Banner</span>
+		<button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+			<hr/>
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="box1">
+				<input type="file" name="file-2[]" id="file-2" class="inputfile inputfile-2"  onchange="angular.element(this).scope().getFileDetails(this)"/>
+				<label for="file-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Choose a file&hellip;</span></label>
+			</div>
+<!--			<button class="btn btn-primary" type="button" ng-click="uploadFiles()" style="margin-top:23px">Upload Image</button>-->
+		</div>
+		<div class="col-sm-6 col-sm-offset-2" ng-if="ImgPreview">
+		<img src="{{ImgPreview}}" height="200">
+		<div ng-repeat="file in files">
+			<p>{{file.name}}</p>
+		</div>
+		</div>
+   </div>
+	<div >
+		<br/>
+	<span>Sort Order:&nbsp;</span><input type="number" ng-model="sortorder" style="width:35px" min="0"/>
+	</div>
+	<div >
+		<br/>
+	<button class="btn btn-primary" type="button" ng-click="saveData()" style="margin-top:23px">Save</button>
+	</div>
+	
+</div>
+	
+	<div ng-if="showSpinner">
+		<span us-spinner="{radius:30, width:8, length: 16}"></span>
+	</div>
+</script>
+
+
+<script type="text/ng-template" id="deleteBannerModal.html">
+
+<div class="modal-body">
+<span style="font-weight:bold;font-size:16px">Confirmation</span>
+<button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+<hr style="border-top:1px solid #e5e5e5;margin-top:10px;margin-bottom:10px"/>
+<p>Are you sure to delete this Banner?</p>
+</div>
+	<div class="modal-footer">
+	<button type="button" class="btn btn-danger"
+	ng-click="onConfirmDelete()">Yes</button>
+	<button type="button" class="btn btn-primary"
+	ng-click="close()">No</button>
+	</div>
+</script>

@@ -1,0 +1,42 @@
+		<div class="product-list-item prod-layout-classic book-tpl-container"  id="{{'parentElm_'+book.id}}">
+			
+			<div class="zn_badge_container">
+				 <span class="zonsale zn_badge_sale" ng-if="book.units_in_stock<=0">Out Of Stock!</span>
+			</div>
+
+			<a ui-sref="product({id:book.id,name:book.name})">
+			
+			<span class="image kw-prodimage book-tpl-image" style="background-color:white">
+			 	<div ng-repeat="(key,image) in book.images track by $index">
+			   		<div ng-if="image.type=='cover'">
+						<img class="kw-prodimage-img" src={{getMediumImage(image.url)}} alt="{{book.name}}" title="{{book.name}}" id="{{'bookTplImg_'+book.id}}">  
+						<img class="kw-prodimage-img-secondary" src="{{image.url}}" alt="{{book.name}}" title="{{book.name}}">
+			   		</div>
+				</div>
+			</span>
+
+			<div class="details kw-details fixclear">
+				<!--<h3 class="kw-details-title">{{book.name}}</h3>-->
+				<h3 class="kw-details-title" title-trimmer>{{book.name | restrictText:30}}</h3>
+				<!-- <p class="desc kw-details-desc">
+					{{book.desc}}
+				</p> -->
+                <span class="price" ng-show="book.orignal_price!=book.discount_price"><del data-was="WAS"><span class="amount" ng-bind-html="book.orignal_price | currency: currencyType"></span></del><ins data-now="NOW"><span class="amount" ng-bind-html="book.discount_price | currency: currencyType"></span></ins></span>
+				 <span class="price" ng-if="book.orignal_price==book.discount_price"><span class="amount" ng-bind-html="book.discount_price | currency : currencyType"></span></span> 
+
+				 <span style="font-size:10px;line-height:1.4;opacity:0" class="price" ng-hide="book.orignal_price!=book.discount_price">
+				 <del data-was="WAS"><span class="amount" ng-bind-html="book.orignal_price | currency: currencyType"></span></del><ins data-now="NOW"><span class="amount" ng-bind-html="book.discount_price | currency: currencyType"></span></ins></span>
+				 </span> 
+                
+			</div>
+			
+			<!-- Close details fixclear -->
+			</a>
+            
+			<div class="actions kw-actions">
+				<a href="" data-product_id="22" data-product_sku="" data-quantity="1" class="actions-addtocart add_to_cart_button product_type_variable golden-bg"  ng-click="onCartAdd(book.id,1,book.units_in_stock)" ng-if="book.units_in_stock>0" imgid="book.id" isfromlanding="isfromlanding" flying-cart>ADD TO CART</a>
+				
+				<a href="" class="actions-moreinfo golden-bg" ng-click="onAddToWishList(book.id)">ADD TO WISHLIST</a>
+			</div>
+            
+		</div>

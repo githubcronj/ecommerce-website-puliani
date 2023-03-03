@@ -1,0 +1,149 @@
+<ng-include src="'components/tpl/checkout/forgotpasswordmodal.html'"></ng-include>
+<div class="kl-title-block clearfix text-left tbk-symbol--line  tbk-icon-pos--after-title" style="padding-bottom:0px">
+	<h2 class="tbk__title montserrat fs-34 fw-semibold black">Account Details</h2>
+	<span class="tbk__symbol ">
+		<span></span>
+	</span>
+</div>
+<div class="container" style="padding-bottom:20px;">
+<div class="row">
+  <div class="col-md-6" style="border-right:1px solid  #CCCCCC">
+    <h3>I'm A New Customer </h3>
+    <span>Register with us for a faster checkout, to track the status of your order and more. You can also checkout as a guest</span> <br/><br/>
+	 
+<uib-accordion close-others="true">
+<uib-accordion-group style="cursor:pointer"  is-open="guest.isopen" ng-init="guest.isopen=false">
+    <uib-accordion-heading ng-click="guest.isopen=!guest.isopen">
+    <div>
+	   <span>Checkout as a guest</span>
+	   <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': guest.isopen, 'glyphicon-chevron-right': !guest.isopen}"></i> 
+	   </div>
+    </uib-accordion-heading>
+	<form class="form-horizontal" ng-submit="onUserRegister(guestuser,'guest')">
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="Emailaddress">Email Address</label>  
+				<div class="col-md-5">
+				<input id="Emailaddress" name="Emailaddress" placeholder="Email Address" class="form-control input-md" required="" type="email" ng-model="guestuser.email">
+
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="mobileno">Mobile no</label>  
+				<div class="col-md-5">
+				<input id="mobileno" name="mobileno" placeholder="Enter Mobile no" class="form-control input-md" required="" type="text" ng-model="guestuser.phone_number" pattern="[0-9]{10}" title="Ex:9845830694" />
+
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="continue"></label>
+				<div class="col-md-4" style="padding-top:20px">
+				<button id="continue" name="continue" class="button golden-bg" type="submit">Continue</button>
+				</div>
+			</div>
+	</form>
+
+	
+</uib-accordion-group>
+<uib-accordion-group style="cursor:pointer"  is-open="register.isopen" ng-init="register.isopen=false">
+	  
+      <uib-accordion-heading ng-click="register.isopen=!register.isopen">
+      <div>
+	     <span>Register an account</span>
+         <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': register.isopen, 'glyphicon-chevron-right': !register.isopen}"></i> 
+         </div>
+         
+      </uib-accordion-heading>
+	   
+<form class="form-horizontal" ng-submit="onUserRegister(registeruser,'register')">
+<fieldset>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="username">Name</label>  
+  <div class="col-md-5">
+  <input id="username" name="username" placeholder="Name" class="form-control input-md" required="" type="text" ng-model="registeruser.first_name">
+    
+  </div>
+</div>
+	
+<div class="form-group">
+	<label class="col-md-4 control-label" for="mobileno">Mobile no</label>  
+	<div class="col-md-5">
+	<input id="mobileno" name="mobileno" placeholder="Enter Mobile no" class="form-control input-md" required="" type="text" ng-model="registeruser.phone_number" />
+
+	</div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Emailaddress">Email Address</label>  
+  <div class="col-md-5">
+  <input id="Emailaddress" name="Emailaddress" placeholder="Email Address" class="form-control input-md" required="" type="email" ng-model="registeruser.email">
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="password">Password</label>
+  <div class="col-md-5">
+    <input id="password" name="password" placeholder="password" class="form-control input-md" required="" type="password" ng-model="registeruser.password">
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="continue"></label>
+  <div class="col-md-4" style="padding-top:20px">
+    <button id="continue" name="continue" class="button golden-bg">Continue</button>
+  </div>
+</div>
+</fieldset>
+</form>
+	
+    </uib-accordion-group>
+</uib-accordion>
+	  
+  </div>
+  <div class="col-md-6">
+	 <div style="padding-left:15px">
+    <h3>I'm A Returning Customer </h3>
+    <span>To continue, please enter your email address and password that you use for your account.</span><br/><br/>
+		 
+		 
+<form class="form-horizontal" ng-submit="onUserLogin(login)">
+<fieldset>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Emailaddress">Email Address</label>  
+  <div class="col-md-5">
+  <input id="Emailaddress" name="Emailaddress" placeholder="Email Address" class="form-control input-md" required="" type="email" ng-model="login.email">
+	</div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="password">Password</label>
+  <div class="col-md-5">
+    <input id="password" name="password" placeholder="Password" class="form-control input-md" required="" type="password" ng-model="login.password">
+    
+  </div>
+</div>
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 col-md-offset-5 control-label"><a style="font-weight:normal;cursor:pointer;"  ng-click="open('lg','resetpassword')">Forgot Password?
+						</a></label>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label"><a style="cursor:pointer;"  ng-click="openForgotModal()">
+						</a></label>
+  <div class="col-md-4" style="padding-top:20px">
+    <button type="submit" id="continue" name="continue" class="button golden-bg">Continue</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+	 </div>
+  </div>
+</div>
+</div>

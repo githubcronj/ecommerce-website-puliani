@@ -1,0 +1,242 @@
+<ng-include src="'app/bulk_upload/modal/csvformat.html'"></ng-include>
+<ng-include src="'app/bulk_upload/modal/confirmupload.html'"></ng-include>
+<ng-include src="'app/products/modal/productDetails/productDetails.html'"></ng-include>
+<h3>Bulk Upload:</h3>
+<hr />
+<span>STEP 1</span>
+<div class="row">
+  
+        <div class="col-sm-3">
+            <label style="color:green;">*Choose csv File here</label>
+        </div>
+       <!--  <div style="height:50px; width:50%; padding:10px;border:2px dashed black;">
+            <input type="file" csv-reader results="csvFile" />
+        </div> -->
+
+        <div class="col-sm-3">
+          <div class="fileUpload btn btn-primary">
+            <span>Choose csv file here</span>
+            <input type="file" class="upload" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" onchange="angular.element(this).scope().getFileDetails(this)" csv-reader results="csvFile" callback="validateCsv(data)"  />
+          </div>
+          <div style="padding-top:10px">
+                <a style="cursor:pointer" ng-click="showCsvFileFormat()"> click here </a>to see sample csv format
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <span ng-show="csvfilename && isvalidcsv === true"> You have selected <b>{{csvfilename}}</b> file</span>
+           <span ng-show="isvalidcsv === false"> You have selected <b>wrong format of csv</b> file</span>
+          
+        </div>
+</div>
+<div  style="padding-top:50px">STEP 2</div>
+<div class="row">
+
+    <div class="col-sm-3">
+        <div>
+            <label style="color:green; padding-bottom:20px">*Choose image folder here</label>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div flow-init flow-files-added="processFiles($files)"SSS class="ng-scope">
+            <div class="drop" flow-drop ng-class="dropClass">
+                <span class="fileUpload btn btn-primary" flow-btn flow-directory ng-show="$flow.supportDirectory" >Upload Image Folder<input type="file" class="upload" multiple="multiple" webkitRelativePath style="visibility: hidden; position: absolute;" ng-disabled="fileselected==true">
+                </span>
+
+           </div>
+             <span>make sure you have selected csv file</span>
+        </div>
+        </div>
+        <div class="col-sm-6">
+        <div style="padding-top:10px;" ng-show="noOfFolders > 0">Found <b>{{noOfFolders}} folders </b> && <b>{{noOfFiles}} files</b>.</div>
+    </div>
+</div>
+<hr/>
+<div ng-show="selectedImageFolder && csvfilename">
+    <div>
+        <label ng-show="isvalidcsv">
+            <span style="color:orange">Information:</span> Found <b ng-show="totalProducts>0"> {{totalProducts}}  Products </b><b ng-show="!totalProducts">{{csvFile.length-1}}  Products</b> in CSV
+        </label>
+        <label ng-show="!isvalidcsv">
+            <span style="color:orange">Information:</span> We have got wrong csv file
+        </label>
+    </div>
+    <div>
+        <label style="padding-left:90px">
+            Found <b> {{noOfFolders}} Image folders </b> in uploaded folder
+        </label>
+    </div>
+    <hr/>
+</div>
+<div class="row" ng-hide="removeTestReport==true">
+    <div class="col-sm-12">
+        <div style="float:right">
+            <input type="button" class="btn btn-success" value="Test Bulk Upload" ng-click="testBulkUpload()" />
+        </div>
+    </div>
+</div>
+
+<div style="margin-top:20px" ng-show="testedBulk && removeTestReport!=true" class="row">
+<!-- <div class="col-sm-2">
+</div> -->
+<div class="col-sm-12">
+<div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">Report of Bulk Upload</div>
+      <div class="panel-body">
+           <table class="table">
+    <thead>
+      <tr>
+        <th>Sr No</th>
+        <th>Product Name</th>
+        <th>No Of Images</th>
+        <th>Category</th>
+        <th>Similar Product</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="product in productsToUpload">
+        <td>{{$index+1}}</td>
+        <td>{{product.name}}</td>
+        <td>
+        <p ng-hide="product.noOfImages == 0 || product.noOfImages == undefined ">
+            {{product.noOfImages}}
+        </p>
+        <p style="color:red" ng-show="product.noOfImages == 0 || product.noOfImages == undefined ">
+            No images found
+        </p>
+        </td>
+        <td>
+            <div ng-repeat="(key,category) in product.categories">
+            Name: <b>{{category.name}}</b>
+            <br />
+            Hierarchy: <b>{{category.parent}}</b>
+            <br /> <br />
+            </div>
+            <div ng-show="product.categories.length == 0 || product.categories.length == undefined">
+            <p style="color:red">No Category</p>
+            </div>
+        </td>
+        <td>
+            <div ng-repeat="similar in product.similar">
+                <a style="cursor:pointer" ng-click="showProductDetails(similar.id)"> {{$index+1 +"." + similar.name}}</a>
+            </div>
+            <div ng-show="product.similar<1">
+            No similar product found
+            </div>
+        </td>
+      </tr>
+    
+    </tbody>
+  </table>
+  <div style="float:right">
+            <input type="button" class="btn btn-success" value="Upload Products" ng-disabled="undefined == (selectedImageFolder && csvfilename) || testedBulk==false" ng-click="confirmUpload()" />
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+</div>
+
+<hr />
+<div class="row">
+<!--     <div class="col-sm-9">
+      <div ng-show="((succesfullyUploadedProducts+failedProducts) !== (csvFile.length-1)) && (showOverallSpinner)" style="float:right" class="sk-circle">
+                    <div class="sk-circle1 sk-child"></div>
+                    <div class="sk-circle2 sk-child"></div>
+                    <div class="sk-circle3 sk-child"></div>
+                    <div class="sk-circle4 sk-child"></div>
+                    <div class="sk-circle5 sk-child"></div>
+                    <div class="sk-circle6 sk-child"></div>
+                    <div class="sk-circle7 sk-child"></div>
+                    <div class="sk-circle8 sk-child"></div>
+                    <div class="sk-circle9 sk-child"></div>
+                    <div class="sk-circle10 sk-child"></div>
+                    <div class="sk-circle11 sk-child"></div>
+                    <div class="sk-circle12 sk-child"></div>
+                </div>
+                <div ng-show="(succesfullyUploadedProducts+failedProducts) === (csvFile.length-1) && (csvFile.length!=0)" style="float:right">
+                <a>see overview</a>
+                </div>
+    </div> -->
+    <div class="col-sm-12">
+    <label ng-show="succesfullyUploadedProducts>0" style="color:green;float:right;padding-bottom:10px;">Uploaded {{succesfullyUploadedProducts}}/{{totalProducts}}</label>
+    <label ng-show="failedProducts>0" style="color:red;float:right;padding-right:25px;padding-bottom:10px;">Failed {{failedProducts}}/{{totalProducts}}</label>
+    <label ng-show="warning>0" style="color:orange;float:right;padding-right:25px;padding-bottom:10px;">Uploaded with warning {{warning}}/{{totalProducts}}</label>
+    <label ng-show="warning + succesfullyUploadedProducts + failedProducts === totalProducts" style="float:right;padding-right:25px;padding-bottom:10px;">uploaded all products</label>
+
+
+
+    </div>
+</div>
+
+<div class="panel-group" ng-show="removeTestReport==true">
+    <div class="panel panel-default">
+      <div class="panel-heading">Report of Bulk Upload</div>
+      <div class="panel-body">
+           <table class="table">
+            <thead>
+        <tr>
+           <th>Product Name</th>
+           <th>Status</th>
+        </tr>
+        <tr>
+        </tr>
+        </thead>
+        <tr ng-repeat="key in AllProducts">
+            <td>
+                <label class="labelAtshowingProduct">
+                  <span ng-show="currentProduct !== $index">
+                    <a ng-click="showProductDetail(key, $index)" style="cursor:pointer"><i class="fa fa-caret-right" aria-hidden="true"></i>
+                   </a>
+                  </span>
+
+                  <span ng-show="currentProduct === $index">
+                    <a style="cursor:pointer" ng-click="hideProductDetails()">
+                      <i class="fa fa-sort-desc" style="color:green"aria-hidden="true">
+                          
+                      </i> 
+                    </a>
+                  </span>
+                   
+                   &nbsp 
+
+                   <span>{{key.title}}</span>
+                    <div style="margin-top:10px;margin-bottom:10px" ng-show="currentProduct === $index">
+                        <div style="width:500px;" class="panel panel-default">
+                            <div ng-show="!key.warning && key.status != false" class="panel-body" style="color:green">{{key.message}} </br> Found {{key.noOfImages}} Images
+                            </div>
+                            
+
+                             <div ng-show="key.warning" class="panel-body" style="color:#A5A530">{{key.message}} </br> Found {{key.noOfImages}} Images
+                             </div>
+
+                             <div ng-show="key.status == false" class="panel-body" style="color:red">{{key.message}}
+                             </div>
+
+
+                        </div>
+                    </div>
+                </label>
+            </td>
+            <td ng-show="key.inProgress">
+                 <div ng-show="key.inProgress" class="sk-circle">
+                    <span us-spinner="{radius:2, width:4, length: 4}"></span>
+                </div>
+            </td>
+            <td ng-hide="key.inProgress">
+                    <span><img ng-show="!key.warning && (key.status && (key.inProgress === false))" src="assets/images/favicon-check.ico" /></span>
+
+                    <span><img ng-show="key.warning && (key.status && (key.inProgress === false))" src="assets/images/favicon-warning.png" /></span>
+
+                     <span><img ng-show="(key.status === false && (key.inProgress === false))" src="assets/images/favicon-remove.ico" /></span>
+            </td>
+            
+
+       
+        </tr>
+        </table>
+        <button ng-show="uploadComplete==true" type="button" class="btn btn-success pull-right" ng-click="redirectTo('index.products')">Show My Products</button>
+    </div>
+</div>
+</div>

@@ -1,0 +1,36 @@
+<ng-include src="'app/productedit/modal/confirmation.html'"></ng-include>
+<ng-include src="'app/products/modal/productDetails/productDetails.html'"></ng-include>
+<div class="portlet-body">
+    <div class="tabbable-bordered">
+        <ul class="nav nav-tabs">
+            <li ng-class="currentTab === 'data' ? 'active' : ''">
+                <a  style="cursor:pointer" ng-click="renderView('data')"> Data </a>
+            </li>
+            <li ng-class="currentTab === 'image' ? 'active' : ''">
+                <a style="cursor:pointer" ng-click="renderView('image')"> Images </a>
+            </li>
+            <li class="paddingLeft10 pull-right" ng-if="currentTab === 'image' || type === 'edit'" >
+              <button class="btn btn-success" type="button" ng-click="createProduct()" >Save Product </button>
+            </li>
+            <li ng-if="currentTab === 'image' || type === 'edit'" class="pull-right">
+              <button class="btn btn-success" type="button" ng-click="createAnotherProduct()" >Save and Create Other Product</button>
+            </li>
+
+        </ul>
+
+        <hr />
+    </div>
+</div>
+
+<tabset>
+  <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" >
+    <div ng-if="currentTab === tab.title">
+      <div  ng-include="tab.content"></div>
+    </div>
+
+  </tab>
+</tabset>
+
+<div ng-if="showLoadingProduct">
+  <span us-spinner="{radius:30, width:8, length: 16}"></span>
+</div>

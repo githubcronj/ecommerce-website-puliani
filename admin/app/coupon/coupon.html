@@ -1,0 +1,92 @@
+<ng-include src="'app/coupon/modal/editCoupon.html'"></ng-include>
+<ng-include src="'app/coupon/modal/sendCouponstpl.html'"></ng-include>
+<!-- Form Name -->
+<legend>Coupons</legend>
+
+<div class="row">
+      <div class="col-md-12">
+
+                            <!-- Begin: life time stats -->
+                            <div class="portlet light portlet-fit portlet-datatable bordered">
+                                <div class="portlet-title">
+
+                                    <div class="actions">
+                                        <div class="btn-group btn-group-devided">
+                                            <button class="btn btn-primary" type="button" ng-click="AddCoupon('md','add','','')"> Add Coupon</button>
+                                        </div>
+
+                                        <div ng-show="removeFilters" class="btn-group btn-group-devided">
+                                            <button class="btn btn-primary" type="button" ng-click="clearFilters()"> Clear Filters</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="table-container">
+                                        
+                                        <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_orders">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="4%">Sr No</th>
+                                                    <th class="focusClass" ng-click="tableSorter('code')"width="10%"> Coupon Code <span ng-show="jsonBody.sortBy.attribute == 'code'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+                                                    <th class="focusClass" ng-click="tableSorter('minimum_cart')"width="10%"> Minimum Cart <span ng-show="jsonBody.sortBy.attribute == 'minimum_cart'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+                                                    <th class="focusClass" ng-click="tableSorter('start_date')"width="10%"> Start Date <span ng-show="jsonBody.sortBy.attribute == 'start_date'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+                                                    <th class="focusClass" ng-click="tableSorter('expiry_date')"width="10%"> Expiry Date <span ng-show="jsonBody.sortBy.attribute == 'expiry_date'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+                                                    <th width="5%"> Single Use </th>
+                                                    <th width="15%"> Actions </th>
+
+                                                </tr>
+                                                <tr role="row" class="filter" ng-repeat = "key in coupons">
+                                                    <td>
+                                                        {{(currentPage-1) * couponPerPage + $index  + 1}}
+                                                    </td>
+                                                    <td>
+                                                        {{key.code}}
+                                                    </td>
+
+                                                    <td>
+                                                        {{key.minimum_cart}}
+                                                    </td>
+
+                                                    <td>
+                                                        {{key.start_date | date:'yyyy-MM-dd'}}
+                                                    </td>
+
+                                                    <td>
+                                                        {{key.expiry_date | date:'yyyy-MM-dd'}}
+                                                    </td>
+                                                    <td>
+                                                        {{key.is_single_use}}
+                                                    </td>
+
+                                                    <td>
+                                                       <button type="submit" class="btn btn-primary golden-bg-clr golden-border-clr" ng-click="editCoupon('md','edit',key)"> <i class="fa fa-edit"></i>  </button>
+
+                                                        <button type="submit" class="btn btn-danger golden-bg-clr golden-border-clr" ng-click="deleteCopon(key)"> <i class="fa fa-trash"></i>  </button>
+                                                        
+                                                        <button type="submit" class="btn btn-warming golden-bg-clr golden-border-clr" ng-hide="key.is_single_use" ng-click="sendCoupon(key)"> <i class="fa fa-paper-plane"></i> Send </button>
+                                                    </td>
+
+
+
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+                                            <!--  <div class="pull-right">
+                                                 <uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" ng-click="pageChanged()" class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
+                                              </div> -->
+                                              <div class="pull-right">
+                                                <uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="couponPerPage" max-size="maxSize" ng-click="pageChanged()" class="pagination-sm" max-size="maxSize" boundary-links="true" rotate="false"></uib-pagination>
+                                              </div>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End: life time stats -->
+                        </div>
+                    </div>

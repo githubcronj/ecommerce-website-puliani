@@ -1,0 +1,23 @@
+               List of relations
+ Schema |        Name        | Type  |  Owner   
+--------+--------------------+-------+----------
+ public | Sessions           | table | postgres
+ public | banner_images      | table | postgres
+ public | cart_products      | table | postgres
+ public | carts              | table | postgres
+ public | categories         | table | postgres
+ public | configs            | table | postgres
+ public | coupons            | table | postgres
+ public | credit_cards       | table | postgres
+ public | news               | table | postgres
+ public | order_products     | table | postgres
+ public | orders             | table | postgres
+ public | payments           | table | postgres
+ public | product_categories | table | postgres
+ public | products           | table | postgres
+ public | shipments          | table | postgres
+ public | users              | table | postgres
+ public | wishlist_products  | table | postgres
+ public | wishlists          | table | postgres
+(18 rows)
+

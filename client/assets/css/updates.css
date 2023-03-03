@@ -1,0 +1,47 @@
+/* ==========================================================================
+
+   Updates CSS Stylesheet.
+
+   This stylesheet contains the updates we will make. Usually in template.css
+   or addons.css we'll just add tweaks however this will contains the future
+   updates of this template. Do not change nothing as it will be constantly updated.
+
+   ========================================================================== */
+
+/* Login pop-up */
+.white-popup-block { background: #ededed; text-align: left; max-width: 800px; margin: 40px auto; position: relative;}
+.white-popup-block2 { background: #ededed; text-align: left; max-width: 350px; margin: 40px auto; position: relative;}
+/** Login Register stuff */
+#register_panel,
+.register-panel {width:400px;}
+.login-panel,
+.register-panel,
+.forgot-panel { padding:20px;}
+.login-panel .m_title,
+.register-panel .m_title,
+.forgot-panel .m_title {font-size:20px; font-weight:500; color:#4a4a4a; margin-bottom: 20px; line-height: 1.2;}
+.login-panel .form-control {width:145px; margin: 0 4px 0 0; vertical-align: top; display: inline-block;
+height: 30px;}
+.login-panel input[type=submit],
+.register-panel input[type=submit],
+.forgot-panel input[type=submit] {border:0; vertical-align: top;  height:30px;}
+.login-panel .create_account,
+.login-panel input[type=submit],
+.register-panel input[type=submit],
+.forgot-panel input[type=submit],
+.login-panel .login_facebook {display: inline-block; line-height: 30px; background: #E12121; color: white; font-size: 14px; padding: 0 10px; margin-right:30px;
+-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
+.login-panel .create_account:hover,
+.login-panel input[type=submit]:hover,
+.register-panel input[type=submit]:hover,
+.forgot-panel input[type=submit]:hover {background: #787878; }
+.login-panel .login_facebook {background:#3b5998; margin-right:0;}
+.login-panel .links a,
+.register-panel .links a,
+.forgot-panel .links a {font-size:10px; font-weight:bold; color:#898989; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);}
+.login-panel .links { margin-top: 10px;}
+.login-panel #forgot-email { width: 200px;}
+@media (max-width: 768px) {
+	.login-panel .create_account { margin-bottom: 10px;}
+	.login-panel .form-control { margin-bottom: 10px;}
+}

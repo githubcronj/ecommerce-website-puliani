@@ -1,0 +1,88 @@
+
+
+
+   <script type="text/ng-template" id="addAddressModal.html">
+ 
+        <div class="modal-body">
+			<span style="font-weight:bold;font-size:16px" ng-if="type=='add'">Enter a new shipping address</span>
+			<span style="font-weight:bold;font-size:16px" ng-if="type=='edit'">Edit the shipping address</span> <button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+<hr style="border-top:1px solid black;margin-top:10px;margin-bottom:10px"/>
+<form class="form-horizontal" ng-submit="onAddressSubmit()">
+<fieldset>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Name</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Enter name" class="form-control input-md" required="" ng-model="data.name">
+    
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="address">Address</label>
+  <div class="col-md-5">                     
+    <textarea class="form-control" id="address" name="address" ng-model="data.address" required=""></textarea>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="city">City</label>  
+  <div class="col-md-5">
+  <input id="city" name="city" type="text" placeholder="Enter city" class="form-control input-md" required="" ng-model="data.city">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="state">State</label>  
+  <div class="col-md-5">
+  <input id="state" name="state" type="text" placeholder="Enter state" class="form-control input-md" required="" ng-model="data.state">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="pincode">Pincode</label>  
+  <div class="col-md-5">
+  <input id="pincode" name="pincode" type="text" placeholder="Enter Pincode" class="form-control input-md" required="" ng-model="data.pincode">
+    
+  </div>
+</div>
+
+<!-- Prepended text-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="phone">Phone</label>
+  <div class="col-md-5">
+    <div class="input-group">
+      <span class="input-group-addon">+91</span>
+      <input id="phone" name="phone" class="form-control" placeholder="Enter Phone" type="text" required="" ng-model="data.phone">
+    </div>
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="landmark">Landmark</label>  
+  <div class="col-md-5">
+  <input id="landmark" name="landmark" type="text" placeholder="(Optional)" class="form-control input-md" ng-model="data.landmark">
+    
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for=""></label>
+  <div class="col-md-4">
+    <button id="" name="" class="btn btn-primary golden-border-clr golden-bg-clr ">SAVE</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+        </div>
+	   
+    </script>

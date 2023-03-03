@@ -1,0 +1,59 @@
+<script type="text/ng-template" id="openOrdersModal.html">
+   <div class="modal-header">
+	   <span style="font-weight:bold;font-size:15px">Orders</span><span>  ({{user.first_name+' '+((user.last_name)?user.last_name:'')}})</span>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" ng-csv="ExportOrders" filename="user.csv"  csv-header="['Order Number','Total Price']">Export Orders</button></span>
+      <button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+      
+   </div>
+	<div class="modal-body">
+		
+				 <div class="wishlist" >
+					<uib-accordion close-others="false">
+						<uib-accordion-group is-open="value.isopen" ng-repeat="(key,value) in userOrders track by $index" ng-init="value.isopen=false">
+							<uib-accordion-heading ng-click="value.isopen=!value.isopen">
+							<div>
+								<!--<span ng-if="!value.isopen">Total {{value.products.length}} <span ng-if="value.products.length==1">Item</span><span ng-if="value.products.length>1">Items</span></span><span style="height:38px">&nbsp;</span>--><i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': value.isopen, 'glyphicon-chevron-right': !value.isopen}"></i>   
+								<span  class="hidden-xs" style="cursor:pointer;padding-right:39px" ><span style="font-weight:bold"  ng-bind-html="value.orderInfo.order_number"></span></span>
+								<span    class="hidden-xs" style="cursor:pointer;padding-right:39px">[<span style="font-weight:bold"  ng-bind-html="value.orderInfo.created_at|date:'yyyy-MM-dd'"></span>]</span>
+
+                                 
+								<span class="pull-right" style="padding-right:39px" ng-if="!value.isopen">Order Total: <span style="font-weight:bold"  ng-bind-html="value.orderInfo.total_discount_price | currency : currencyType"></span></span>
+								</div>
+							</uib-accordion-heading>
+
+						<div class="row" style="border-bottom:1px solid #CCCCCC;padding:20px" ng-repeat="(key,product) in value.products track by $index">
+							<div class="col-md-2">
+								<div ng-repeat="(key,image) in product.images  track by $index">
+									<div ng-if="image.type=='cover'">
+										<img class="kw-prodimage-img-secondary" src="{{image.url}}" alt="{{book.name}}" title="{{book.name}}">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<a ui-sref="product({id:product.id})" style="line-height:2;font-size:15px">{{product.name}}</a><br/>
+								<span  style="line-height:2;font-size:13px">Quantity: {{product.quantity}}</span><br/>
+								<span  style="line-height:2;font-size:15px">Status: <span style="font-weight:bold;color:green">{{value.orderInfo.status}}</span></span>
+							</div>
+							<div class="col-md-2">
+								<span ng-bind-html="product.discount_price | currency : currencyType"></span><span>&nbsp;/&nbsp;unit</span>
+							</div>
+							<div class="col-md-4">
+								<span>Estimated Delivery:  {{value.orderInfo.estimated_delivery_date | date : "EEE, d MMM'''yy"}}</span>
+							</div>
+						</div>
+						<div class="row" style="padding:20px">
+							<div class="pull-right">
+								<span>Order Total: <span style="font-weight:bold"  ng-bind-html="value.orderInfo.total_discount_price | currency : currencyType"></span></span>
+							</div>
+						</div> 
+						</uib-accordion-group>
+					</uib-accordion>
+				</div>
+	
+		<p ng-if="userOrders.length==0" style="font-weight:bold;text-align:center">There are no any orders for this user to show.</p>
+           
+	</div>
+		<div class="modal-footer">
+
+		</div>
+</script>

@@ -1,0 +1,65 @@
+<form class="form-horizontal" ng-submit="onInfoSubmit()">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Personal Information</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="firstname">First Name</label>  
+  <div class="col-md-5">
+  <input id="firstname" name="firstname" type="text" placeholder="Enter First Name" class="form-control input-md" required="" ng-model="currentUser.first_name">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="lastname">Last Name</label>  
+  <div class="col-md-5">
+  <input id="lastname" name="lastname" type="text" placeholder="Enter Last Name" class="form-control input-md" required="" ng-model="currentUser.last_name">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="lastname">Mobile Number</label>  
+  <div class="col-md-5">
+  <input id="mobileno" name="mobileno" type="text" placeholder="Enter Mobile Number" class="form-control input-md" required="" ng-model="currentUser.phone_number" pattern="[0-9]{10}" title="Ex:9845830694">
+  </div>
+</div>
+	
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="gender">Gender</label>
+  <div class="col-md-5">
+    <select id="gender" name="gender" class="form-control" ng-options="gender.value as gender.name for gender in genderData" ng-model="currentUser.gender" >
+    </select>
+  </div>
+</div>
+	
+<!-- Date input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="lastname">Date Of Birth</label>  
+  <div class="col-md-5">
+     <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="currentUser.dob" is-open="popup.opened" popup-placement="auto top-left" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open()"  style="padding-left:12px;padding-right:12px;padding-top:6px;padding-bottom:6px"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+      </p>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="save"></label>
+  <div class="col-md-4">
+    <button id="save" name="save" class="btn btn-primary golden-bg-clr golden-border-clr">SAVE CHANGES</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+

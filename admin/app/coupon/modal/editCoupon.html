@@ -1,0 +1,139 @@
+<script type="text/ng-template" id="editCoupon.html">
+
+      <div class="modal-body paddingTop">
+			<span style="font-weight:bold;font-size:16px;text-transform:uppercase">{{type}} Coupon</span>
+
+
+      <button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+				<hr style="border-top:1px solid black;margin-top:10px;margin-bottom:10px"/>
+				<form class="form-horizontal" ng-submit="onSaveCoupon()">
+				<fieldset>
+
+<!-- Text input-->
+        <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput">Code</label>
+              <div class="col-md-5">
+              <input id="textinput" name="textinput" type="text"  class="form-control input-md" ng-disabled="type=='edit'" ng-model="data.code" required>
+            </div>
+        </div>
+<!-- Textarea -->
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="address">Minimum Cart &nbsp; </label>
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-inr" aria-hidden="true"></i></span>
+                        <input type="number" class="form-control" name="minimum_cart"  ng-model="data.minimum_cart" required />
+                    </div>
+                </div>
+        </div>
+
+<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="city">Start Date</label>
+			  <div class="col-md-5">
+			  <input id="start_date" ng-change="validateDate()" name="start_date" type="date" placeholder="Enter city" class="form-control input-md" ng-model="data.start_date" required>
+			  <span ng-bind="message" style="color:red"></span>
+			  </div>
+			</div>
+
+<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="city">Expiry Date</label>
+			  <div class="col-md-5">
+			  <input id="expiry_date"  name="expiry_date" type="date"  class="form-control input-md" ng-model="data.expiry_date" required>
+			  </div>
+			</div>
+
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="phone">Operation</label>
+		  <div class="col-md-5">
+		    <div class="input-group">
+			<select ng-model="data.operation">
+			  <option value="percentage">percentage</option>
+			  <option value="fixed">fixed</option>
+			</select>
+		  </div>
+
+		  </div>
+		</div>
+
+<!-- Prepended text-->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="value">Value:</label>
+		  <div class="col-md-5">
+		    <div class="input-group">
+          <span ng-if="data.operation === 'percentage'" class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
+          <span ng-if="data.operation === 'fixed'" class="input-group-addon"><i class="fa fa-inr" aria-hidden="true"></i></span>
+		      <input type="number" id="value" name="value" class="form-control"  type="text" ng-model="data.value" required>
+		    </div>
+
+		  </div>
+		</div>
+
+<!-- Text input-->
+		<div class="form-group" ng-if="type!='edit'">
+		  <label class="col-md-4 control-label" for="landmark">Is coupon valid for single use?</label>
+		  <div class="col-md-5">
+		  <fieldset id="group1">
+		  	<input type="radio" name="is_single_use" value="yes"  ng-checked="data.is_single_use" ng-click = "isSingleUsedCoupon(true)"> Yes<br>
+  		  	<input type="radio" name="is_single_use" value="no" ng-checked="!data.is_single_use" ng-click = "isSingleUsedCoupon(false)"> No<br>
+		  </fieldset>
+		  </div>
+		</div>
+<!--Textarea-->
+                    
+        <div class="form-group" ng-if="type!='edit' && data.is_single_use">
+            <label class="col-md-4 control-label" for="textinput">User Ph.No:</label>
+            <div class="col-md-5">
+                <input id="textinput" name="textinput" type="number"  class="form-control input-md"  ng-model="data.upno" required>
+            </div>
+        </div>
+
+		<div class="form-group">
+	  <label class="col-md-4 control-label" for="address">Description</label>
+	  <div class="col-md-5">
+	    <textarea class="form-control" id="description" name="description" ng-model="data.description" required></textarea>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label class="col-md-4 control-label" for="term">Terms</label>
+	  <div class="col-md-5">
+	    <textarea class="form-control" id="term" name="term" ng-model="data.terms" required></textarea>
+	  </div>
+	</div>
+
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for=""></label>
+		  <div class="col-md-4">
+		    <button id="" name="" class="btn btn-primary golden-border-clr golden-bg-clr ">SAVE</button>
+		  </div>
+		</div>
+
+	</fieldset>
+	</form>
+   </div>
+
+</script>
+
+<script type="text/ng-template" id="confirmationBox.html">
+  <div class="modal-body paddingConfirmation">
+<button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+       <hr style="border-top:1px solid black;margin-top:30px;margin-bottom:10px"/>
+   <div class="modal-header">
+
+    
+      <h3>Confirmation</h3>
+   </div>
+   <div class="modal-body">
+      <p>Are you sure to delete this coupon?</p>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-danger"
+            ng-click="deleteCoupon(true)">Yes</button>
+      <button type="button" class="btn btn-primary"
+            ng-click="deleteCoupon(false)">No</button>
+
+</div>
+</script>

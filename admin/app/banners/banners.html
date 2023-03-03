@@ -1,0 +1,75 @@
+<ng-include src="'app/banners/modal/Enlarge.html'"></ng-include>
+<ng-include src="'app/banners/modal/addBanner.html'"></ng-include>
+<legend>Banners</legend>
+
+<div class="row">
+      <div class="col-md-12">
+
+                            <!-- Begin: life time stats -->
+                            <div class="portlet light portlet-fit portlet-datatable bordered">
+                                <div class="portlet-title">
+									 <button class="btn btn-primary" type="button" ng-click="onAddBanner()"> Add Banner</button>
+
+                                     <button style="margin-left:10px" ng-show="removeFilters" class="btn btn-primary" type="button" ng-click="clearFilters()"> Clear Filters</button>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="table-container">
+                                        <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_orders">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="3%"> Sr No</th>
+                                                    <th width="10%" style="text-align:center">Image</th>
+													<th width="10%" style="cursor:pointer;text-align:center;" ng-click="tableSorter('sort_order')"> Sort Order <span ng-show="jsonBody.sortBy.attribute == 'sort_order'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+													<th width="10%" style="cursor:pointer;text-align:center;" ng-click="tableSorter('active')"> Active/InActive <span ng-show="jsonBody.sortBy.attribute == 'active'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>   
+													<th width="5%"></th>
+												</tr>
+                                                <tr role="row" class="filter" ng-repeat = "(key,banner) in banners track by $index">
+                                                    <td style="vertical-align:middle;">
+                                                        {{ (currentPage-1) * 5 + $index  + 1}}
+                                                    </td>
+                                                    <td style="text-align:center">
+                                                        <img src="{{banner.url}}" height="75" ng-click="onEnlarge(banner)" style="cursor:pointer" title="Enlarge"/>
+                                                    </td>
+                                                    <td style="text-align:center;vertical-align:middle;" ng-int="banner.isreset=false">
+														<span ng-hide="banner.isreset">
+                                                        <span class="badge">{{banner.sort_order}}</span><br/>
+														<a href="" ng-click="resetSort(key)">reset</a>
+														</span>
+														<span ng-show="banner.isreset">
+                                                        <form ng-submit="saveSortOrder(banner.id,banner.sort_order)">
+                                                           <input type="number" ng-model="banner.sort_order" style="width:35px" min="0"/><br/>
+														    <button type="submit" href="" class="btn btn-xs btn-primary" style="margin-top:5px">save</button> 
+                                                        </form>
+														</span>
+								
+                                                    </td>
+													<td style="text-align:center;vertical-align:middle;">
+														<span ng-class="banner.active ? 'label label-success': 'label label-warning'" style="cursor:pointer" ng-click="onStatusUpdate(banner.id,banner.active)">{{(banner.active)?'Active':'InActive'}}</span>
+                                                    </td>
+													<td style="text-align: center;vertical-align:middle;">
+                                                       <a href="" ng-click="onDeleteBannerModal(banner)" title="remove"><span class="glyphicon glyphicon-trash"></span></a>
+                                                    </td>
+
+
+
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+                                            <!--  <div class="pull-right">
+                                                 <uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" ng-click="pageChanged()" class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
+                                              </div> -->
+                                              <div class="pull-right">
+                                                <uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="5" max-size="5" ng-click="onPageClick()" class="pagination-sm" boundary-links="true" rotate="false"></uib-pagination>
+                                              </div>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End: life time stats -->
+                        </div>
+                    </div>

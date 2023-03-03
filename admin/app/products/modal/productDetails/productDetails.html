@@ -1,0 +1,87 @@
+<script type="text/ng-template" id="productDetails.html">
+  <ng-include src="'app/products/modal/imageDisplay/imageDisplay.html'"></ng-include>
+
+      <div class="modal-body">
+
+        <button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+        <h4 class="titleClass"> {{product.name}} </h4>
+          <hr style="border-top:1px solid black;margin-top:10px;margin-bottom:10px"/>
+            <p> <b> Short Description </b></p>
+            <p> {{product.short_description}} </p>
+          <hr />
+            <p><b>  long Description </b></p>
+            <p> {{product.long_description}} </p>
+          <hr style="margin-bottom: 0px;"/>
+
+			<div class="row">
+				<div ng-repeat="key in product.images">
+						<div ng-if="key.type === 'cover'" class="col-sm-2">
+							<p><b>Cover Photo</b></p>
+							<img style="cursor:pointer" ng-click="enlargeImage($index)" class="imageClass" src="{{key.url}}" />
+							<br />
+
+							<br />
+						</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<p style="padding-left:15px"><b>Other Photos</b></p>
+				<div ng-repeat="key in product.images">
+					<div ng-if="key.type != 'cover'" class="col-sm-2">
+						<span class="badge" style="float:left">{{key.sort_order}}</span>
+						<img style="cursor:pointer" ng-click="enlargeImage($index)" class="imageClass" ng-src="{{key.url}}" />
+						<br />
+					</div>
+				</div>
+			</div>
+
+    <hr/>
+		<div class="row paddingAfterImage">
+			<div class="col-sm-12">
+        <b>Categories: </b>
+        <p style="display:inline;" ng-repeat="category in product.category">
+          {{($index+1)+". "+category.name}}
+        </p>
+
+				<p style="margin-top:10px;"><b>Total units stock: </b><span>{{product.units_in_stock}}</span></p>
+				<p> <b>Original Price: </b><span ng-bind-html="product.orignal_price | currency : currencyType"></span></p>
+				<p><b>Discounted Price: </b><span ng-bind-html="product.discount_price | currency : currencyType"></span></p>
+				<p><b>SKU: </b>{{product.sku}}</p>
+				<p><b>Author: </b>{{product.attribute.author}}</p>
+				<p><b>Publication: </b>{{product.attribute.publicationName}}</p>
+				<p><b>Edition: </b>{{product.attribute.edition}}</p>
+				<!-- <p><b>Year: </b>{{product.attribute.year}}</p> -->
+				<!-- <p><b>Language: </b>{{product.attribute.language}}</p> -->
+				<p><b>ISBN: </b>{{product.attribute.isbn}}</p>
+			</div>
+		</div>
+
+
+        <div class="modal-footer">
+          <div class="pull-right">
+            <button type="button" class="btn btn-primary"
+            ng-click="close()">OK</button>
+          </div>
+
+      </div>
+
+  </script>
+
+  <script type="text/ng-template" id="confirmDeleteProduct.html">
+    <div class="modal-body">
+       <span style="font-weight:bold;font-size:24px;">Confirmation</span>
+      <button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+        <hr style="border-top:1px solid black;"/>
+
+     <div class="modal-body">
+        <p>Are you sure to delete this Product?</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-danger"
+              ng-click="confirmDelete()">Yes</button>
+        <button type="button" class="btn btn-primary"
+              ng-click="close()">No</button>
+
+  </div>
+  </script>

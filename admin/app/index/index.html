@@ -1,0 +1,25 @@
+
+        <ng-include src="'app/index/tpl/header.html'"></ng-include>
+        <!-- END HEADER -->
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+             <ng-include src="'app/index/tpl/sidebar.html'"></ng-include>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                     <div ui-view></div>
+                </div>
+             </div>
+            <!-- END CONTENT -->
+
+
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        <ng-include src="'app/index/tpl/footer.html'"></ng-include>
+       

@@ -1,0 +1,34 @@
+<div class="container">
+	<div class="wishlist">
+		<div class="kl-title-block clearfix text-left tbk-symbol--line  tbk-icon-pos--after-title ptop-40" style="padding-bottom:0px">
+			<h2 class="tbk__title montserrat fs-34 fw-semibold black">My Account</h2>
+			<span class="tbk__symbol ">
+				<span></span>
+			</span>
+		</div>
+		
+<div class="row">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li ng-repeat="(key,value) in sideNavData track by $index" ng-class="value.isActive">
+							<a ui-sref="{{value.sref}}">
+							<i ng-class="value.icon"></i>
+						    {{value.name}}</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+		<div class="col-md-9">
+            <div class="profile-content">
+			  <div ui-view="" ></div>
+            </div>
+		</div>
+	</div>
+		
+	</div>
+</div>

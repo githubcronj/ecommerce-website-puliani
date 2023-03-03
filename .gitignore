@@ -1,0 +1,14 @@
+node_modules
+public
+.tmp
+.idea
+client/bower_components
+admin/bower_components
+dist
+/server/config/local.env.js
+npm-debug.log
+coverage
+fileUploads
+/server/awsS3Config.json
+/server/payUMoneyConfig.json
+/invoices

@@ -1,0 +1,70 @@
+<ng-include src="'app/products/modal/productDetails/productDetails.html'"></ng-include>
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <!-- Begin: life time stats -->
+                            <div class="portlet ">
+                                <div class="portlet-title">
+                                <span class="page-title" style="display:inline">Products <small>Products</small></span>
+                                    <div style="margin-top:20px" class="actions move-down">
+                                            <div style="" class="row">
+                                                <div class="col-sm-5">
+                                            
+                                                    <input type="text" ng-model="searchterm"  class="form-control" autocomplete="off" placeholder="Enter Book Name/Author/Publication/ISBN">
+                                                </div>
+                                                <div class="col-sm-4">   
+                                                    <div class="btn-group btn-group-devided">
+                                                        <button class="btn btn-primary" type="button" ng-click="onSearch(searchterm)"> Search</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="margin-top:20px" class="row">
+                                                <button ng-show="removeFilters" class="removeFilter" ng-click="clearFilters()">Clear Filters</button>
+                                            </div>
+
+                                        </div>
+                                        </div>
+                                   </div>
+
+                                <div class="portlet-body">
+                                    <div class="table-container">
+                                     
+                                        <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_products">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="5%" > Sr No </th>
+                                                    <th width="10%">Image </th>
+                                                    <th class="focusClass" width="45%" ng-click="tableSorter('name')"> Title <span ng-show="jsonBody.sortBy.attribute == 'name'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+                                                    <th class="focusClass" width="15%" ng-click="tableSorter('orignal_price')"> Original Price <span ng-show="jsonBody.sortBy.attribute == 'orignal_price'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+                                                    <th class="focusClass" width="15%" ng-click="tableSorter('discount_price')"> Discount Price <span ng-show="jsonBody.sortBy.attribute == 'discount_price'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+
+
+                                                    <th width="20%"> Actions </th>
+                                                </tr>
+                                                <tr role="row" class="filter" ng-repeat="values in products">
+                                                    <td> {{(currentPage-1) * 5 + $index + 1}} </td>
+                                                    <td><img class="imageInListing" src="{{values.images[0].url}}" /></td>
+                                                    <td><a ng-click="showProductDetails(values)"><span style="cursor:pointer">{{values.name}}</span></a> </td>
+                                                    <td> {{values.orignal_price}}</td>
+                                                    <td> {{values.discount_price}}</td>
+                                                    <td> <button type="submit" class="btn btn-primary golden-bg-clr golden-border-clr" ng-click="editProduct(values)"> <i class="fa fa-edit"></i> </button>
+
+                                                     <button type="submit" class="btn btn-danger golden-bg-clr golden-border-clr" ng-click="deleteProduct(values)"> <i class="fa fa-trash"></i> </button>
+                                                   </td>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody><div class="pull-right">
+                                              <uib-pagination total-items="totalProducts" ng-model="currentPage" items-per-page="5" max-size="5" ng-click="pageChanged()" class="pagination-sm" max-size="maxSize" boundary-links="true" rotate="false"></uib-pagination>
+                                            </div>
+                                          </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            <!-- End: life time stats -->
+                        </div>
+                    </div>
+                </div>
+                <!-- END CONTENT BODY -->

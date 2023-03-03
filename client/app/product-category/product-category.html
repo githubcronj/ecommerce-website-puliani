@@ -1,0 +1,85 @@
+<div class="kl-store-page">
+<section class="hg_section ptop-25">          
+		<div class="container">
+			<div class="row">
+                <div class="col-md-3">
+					<div id="sidebar-widget" class="sidebar">
+						<div class="widget" ng-show="pageType == 'category'">
+							<h3 class="widgettitle title">CATEGORY SEARCH</h3>
+							<div class="widget_search">
+								<div class="search gensearch__wrapper">
+									<form id="searchform" class="gensearch__form"  ng-Submit="onCatSearchSubmit(catSearch)">
+										<input id="s" ng-keydown="pressed($event)" name="s" maxlength="35" ng-model="catSearch" class="inputbox gensearch__input" type="text" size="20" placeholder="SEARCH ..."  required><button type="submit" id="searchsubmit" value="go" class="gensearch__submit glyphicon glyphicon-search"></button>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div id="kl-store_price_filter-2" class="widget kl-store widget_price_filter">
+							<h3 class="widgettitle title">FILTER BY PRICE</h3>
+							<form method="get" >
+								<div class="price-range">
+									<!-- <div class="price-range-slider">
+									</div> -->
+									<div range-slider min="sliderConfig.range.min" max="sliderConfig.range.max" model-min="sliderConfig.minPrice" model-max="sliderConfig.maxPrice" step="1" prevent-equal-min-max="true" on-handle-up="onSliderRelease()"></div>
+									<!-- <button type="submit" class="button">Filter</button> -->
+									<div class="pr-result">
+										<span>Price: </span>
+										<span ><i class="fa fa-inr"></i>{{sliderConfig.minPrice}} -  <i class="fa fa-inr"></i>{{sliderConfig.maxPrice}}</span>
+										
+									</div>				
+								</div>
+							</form>
+						</div>
+						<div id="kl-store_product_categories-2" class="widget kl-store widget_product_categories">
+							<h3 class="widgettitle title">PRODUCT CATEGORIES</h3>
+							<ul class="product-categories">
+							<li class="cat-item" ng-repeat="(key,category) in categoriestree track by $index"><a style="text-transform:uppercase">{{category.name}}</a>    
+								<cat-tree cat="category.child" filter="filter" ng-if="category.child.length>0"></cat-tree>
+							</li>
+							</ul>
+						</div>	
+					</div>
+				</div>	
+				<div class="left_sidebar col-md-9">
+					<h1 class="page-title fw-bold"></h1>
+					<span>
+ 
+ 
+					<p class="kl-store-result-count">Showing all <span class="badge">{{totalcount}}</span> results 
+					<span ng-if="jsonbody.category">from Category <span class="badge">
+                      <span>{{catName}}</span>
+					</span>&nbsp;</span><span ng-if="jsonbody.searchString">with search text 
+					<span class="badge">
+                      <span>{{jsonbody.searchString}}</span>
+
+					<a ng-click="onSearchTextClose()" ng-if="jsonbody.category"><span class="remove glyphicon glyphicon-remove-sign glyphicon-white closesearch"></span></a> </span>
+
+					</span></p>
+					<form class="kl-store-ordering">
+					
+						<select name="orderby" id="sort" class="orderby" ng-options="opt.value as opt.name for opt in sortOptions" ng-model="optionSelected" ng-change="onSortingChange()">
+							<!-- <option value="menu_order" selected="selected">Default sorting</option>
+							<option value="popularity">Sort by popularity</option>
+							<option value="rating">Sort by average rating</option>
+							<option value="date">Sort by newness</option>
+							<option value="price">Sort by price: low to high</option>
+							<option value="price-desc">Sort by price: high to low</option> -->
+						</select>
+					</form>
+					
+					<ul class="products clearfix">
+
+                          <div class="book-height col-md-4 col-lg-4 col-sm-4 col-xs-6" ng-repeat="(key,book) in Books track by $index" style="margin-top:10px;">
+                          <book-tpl book='book'></book-tpl>  
+                          </div>
+
+					
+					</ul>
+					<div infinite-scroll="myPagingFunction()" infinite-scroll-disabled="isScrollDisabled">
+					</div>
+				</div>	
+						
+			</div>	
+		</div>
+</section>
+</div>

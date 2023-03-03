@@ -1,0 +1,160 @@
+.viewCatHeader {
+    font-family: Verdana;
+    font-size: 28px;
+    font-weight: bold;
+    color: #0070bc;
+    vertical-align: middle;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.SecondLevelInner {
+    padding-left: 5px;
+}
+.viewbulletedHyperlink {
+    font-family: Verdana;
+    font-size: 17px;
+    line-height: 18px;
+    font-weight: normal;
+    color: #4d4e53;
+}
+.wrapperTop {
+    clear: both;
+    margin-bottom: 0;
+    margin-right: -3px;
+    padding-bottom: 0;
+    background: url(../assets/images/HeaderImage.jpg);
+    font-family: Verdana, Geneva, sans-serif!important;
+    color: #4d4e53!important;
+}
+.topper {
+    margin-top: 22px;
+    margin-left: 39px;
+    float: left;
+    font-family: Verdana;
+    font-size: 28px;
+    font-weight: normal;
+    color: #4d4e53;
+}
+
+.sub-category{
+
+    cursor:pointer;
+    color:black;
+    font-size: 15px;
+}
+
+.sub-category ::hover{
+    
+    color:green !important;
+    cursor: pointer !important;
+    border-bottom: 2px solid;
+}
+/*.subdiv{
+    width:25%;
+}*/
+
+/*.head{
+    width:100%;
+}
+
+.otherThanHead{
+    width: 100%;
+}
+
+.back-gray{
+        background: gray;
+}
+
+.back-green{
+        background: #8D5A4F;
+}
+
+.back-white{
+    background:white;
+}*/
+
+           /* <div class="col-sm-3">
+                            <ul data-ng-repeat="(key, childCategories) in subCateogories">
+                                
+                                <li class="head" ng-show="$index%4==0">
+                                    
+                                    {{key}}
+
+                                </li>
+
+                                <li ng-show="$index%4==0" class="otherThanHead" ng-repeat="category in childCategories">
+
+                                    <a>
+                                        {{category.name}}
+                                    </a>
+
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-3">
+
+                            <ul data-ng-repeat="(key, childCategories) in subCateogories">
+                                
+                                <li class="head" ng-show="$index%4==1">
+                                    
+                                    {{key}}
+
+                                </li>
+
+                                <li ng-show="$index%4==1" class="otherThanHead" ng-repeat="category in childCategories" >
+
+                                    <a>
+                                        {{category.name}}
+                                    </a>
+
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <ul data-ng-repeat="(key, childCategories) in subCateogories">
+                                
+                                <li class="head" ng-show="$index%4==2">
+                                    
+                                    {{key}}
+
+                                </li>
+
+                                <li ng-show="$index%4==2" class="otherThanHead" ng-repeat="category in childCategories" >
+
+                                    <a>
+                                        {{category.name}}
+                                    </a>
+
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <ul data-ng-repeat="(key, childCategories) in subCateogories">
+                                
+                                <li class="head" ng-show="$index%4==3">
+                                    
+                                    {{key}}
+
+                                </li>
+
+                                <li ng-show="$index%4==3" class="otherThanHead" ng-repeat="category in childCategories" >
+
+                                    <a>
+                                        {{category.name}}
+                                    </a>
+
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+
+        </div>*/

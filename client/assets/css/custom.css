@@ -1,0 +1,288 @@
+/*! custom.css v1.0 */
+
+/* ==========================================================================
+
+   Custom CSS Stylesheet. This is where you should add your own styles!
+
+   ========================================================================== */
+
+/*
+* Simple style overrides or custom adds
+*/
+
+.some-css-selector {font-size:13px;}
+
+/*--COMING SOON PAGE custom css starts here--*/
+
+.com-soon-dmn {
+	color:#fff;
+	font-weight: bold;
+}
+
+.offline-page .containerbox {
+	background: url("../images/bg.png") no-repeat  !important;
+	background-size: cover !important;
+	color:#fff !important;
+	box-shadow:none !important;
+
+}
+
+.offline-page .content {
+	background: rgba(0, 0, 0, 0.1) none repeat scroll 0% 0% !important;
+	border:none !important;
+	padding-top:10px !important;
+	padding-bottom:10px !important;
+}
+
+.offline-page .site-logo {
+	top:45% !important;
+}
+
+.offline-page {
+	background-color: #FAD8A6 !important;
+}
+
+
+/*--HOME PAGE custom css starts here--*/
+
+
+
+.spl {
+	padding-top:10px !important;
+}
+
+.ctabutton {
+	padding-bottom:6px !important;
+}
+
+.kw-prodimage-img {
+	width:70% !important;
+}
+
+.chaser {
+	z-index:999 !important;
+}
+
+
+.kl-store-page .right_sidebar ul.products li.product {
+	list-style-type: none;
+}
+
+.zn_def_header_style, .page-subheader.zn_def_header_style {
+	background:url('../images/sliders/innerbg.jpg') no-repeat;
+	background-size: cover;
+}
+
+.testimonials-carousel {
+	//padding-left:5%;
+
+}
+
+.testimonials-carousel blockquote {
+	box-shadow: none;
+	padding:0px;
+}
+
+
+
+.shop-latest {
+	padding-right:3%;
+	padding-left:3%;
+}
+
+.testimonials_carousel img {
+	padding:1em 0em;
+	width: 100%;
+}
+
+.kl-iconbox {
+	margin-bottom:0px !important;
+
+}
+
+.shop-latest .shop-latest-carousel .controls {
+	height:93%;
+}
+
+
+.testimonials-carousel blockquote:after, .testimonials-carousel blockquote:before {
+	display:none;
+}
+
+.hg_section {
+	background-color: #fff;
+}
+
+.site-header.style3 {
+	background:rgba(0, 0, 0, 1) none repeat scroll 0% 0%;
+}
+
+.kl-header-toptext {
+	color:#fff;
+}
+
+.site-header.style3 .kl-header-toptext a {
+	color:#fff;
+}
+
+.site-header.style3 .kl-top-header {
+	color:#fff;
+}
+
+.site-header.style3 .topnav:not(.social-icons) > li > a {
+	color:#fff;
+}
+
+.site-header.style3 .topnav:not(.social-icons) > li > a:hover {
+	color:#fff;
+}
+
+.site-header.style3 .ctabutton {
+	top:5em;
+}
+
+.site-header.style3 .header-leftside-container {
+	margin:18px 0px 0px 0px;
+}
+
+.site-header.style3 .main-nav > ul > li > a {
+	color:#fff;
+}
+
+
+
+.fs-medium {
+	font-size:150%;
+}
+
+.site-header.style3 .main-nav {
+	float:left;
+	margin-left:0px;
+	margin-right:0px;
+	margin-top: 0px;
+}
+
+.elm-searchbox__input, .elm-searchbox__submit {
+	height:40px;
+}
+
+.elm-searchbox__submit {
+	width:80px;
+}
+
+.latest_posts.style2 ul.posts .details {
+	display:none;
+}
+
+.latest_posts.style2 ul.posts .text {
+	margin-left:0px;
+}
+
+.latest_posts.style2 ul.posts li {
+	margin-top:0px;
+}
+
+img.kl-iconbox__icon {
+	width:40%;
+}
+
+.latest_posts.style2 .m_title_special {
+	font-size:1.5em;
+	font-weight: bold;
+	color:#CC2E2E;
+	margin-bottom: 20px;
+	line-height: 1.4;
+	margin-top:0px;
+}
+/* ==========================================================================
+   ** Responsive styles custom rules
+   * These rules are ready to be used for either overrides
+   * or just your own custom rules.
+   ========================================================================== */
+
+@media only screen and (min-width : 1921px){
+
+}
+
+@media only screen and (max-width : 1440px){
+
+}
+
+@media only screen and (min-width : 1200px) and (max-width : 1440px){
+
+}
+
+@media only screen and (min-width : 1200px){
+
+}
+
+@media only screen and (max-width: 1199px){
+
+
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px){
+
+}
+
+@media only screen and (min-width: 992px){
+
+
+
+}
+
+@media only screen and (max-width: 991px) {
+
+	.btn-third {
+	width: 100%;
+}
+
+/*Applied css for text below images in main page */
+.fs-medium{font-size: 110%}
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px){
+
+
+}
+
+@media only screen and (min-width: 768px) {
+
+
+
+}
+
+@media only screen and (max-width: 767px) {
+
+.kl-store img, .kl-store-page img {
+		max-width:50%;
+	}
+
+	.elm-searchbox__submit {
+	width:80px;
+}
+
+}
+
+
+
+@media only screen and (max-width : 480px) {
+
+
+}
+
+@media only screen and (max-width : 320px) {
+	
+
+.elm-searchbox--transparent2 .elm-searchbox__submit {
+	width:80px;
+}
+
+
+}
+
+.ng-thumb{
+	height: 105px !important;
+}
+

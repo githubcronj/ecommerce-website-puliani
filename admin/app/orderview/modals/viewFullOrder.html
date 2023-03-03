@@ -1,0 +1,106 @@
+<script type="text/ng-template" id="viewFullOrder.html">  
+<div class="modal-body">
+	
+	<span style="font-weight:bold;font-size:16px">Order ID: {{Order.order_number}}</span>
+	<button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+	<hr style="border-top:1px solid black;margin-top:10px;margin-bottom:10px"/>
+	
+	<div style="padding-left: 15px;padding-right: 15px;">
+		<div class="row">
+          <h3>User Detail</h3>
+		<div class="col-md-12" style="margin-bottom:10px">
+			<div class="col-md-6">
+				<span style="font-weight:bold">First Name:</span> {{Order.first_name}}
+			</div>
+			<div class="col-md-6">
+				<span style="font-weight:bold">Last Name:</span> {{Order.last_name}}
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="col-md-6">
+				<span style="font-weight:bold">Email:</span> {{Order.email}}
+			</div>
+		
+		</div>
+
+		</div>
+		  <hr/>
+		<div class="row">
+          <h3>Order Detail</h3>
+		<!-- <div class="col-md-12" style="margin-bottom:10px">
+			<div class="col-md-6">
+				<span style="font-weight:bold">Payment Method:</span> {{Order.payment_method}}
+			</div>
+			<div class="col-md-6">
+				<span style="font-weight:bold">Estimated Delivery Date:</span> {{Order.estimated_delivery_date | date:'yyyy-MM-dd'}}
+			</div>
+		</div> -->
+		<div class="col-md-12" style="margin-bottom:10px">
+			<div class="col-md-6">
+				<span style="font-weight:bold">Coupon Applied: </span><span class="badge" uib-popover="{{Order.description}}" popover-trigger="mouseenter">{{Order.coupon_code || "none"}}</span>
+			</div>
+			<div class="col-md-6">
+				<span style="font-weight:bold">Status: </span><span class="label label-info">{{Order.status}}</span>
+			</div>
+		</div>
+		<div class="col-md-12" style="margin-bottom:10px">
+			<div class="col-md-6">
+				<span style="font-weight:bold">Shipping Charge: </span><span ng-bind-html="Order.shipping_charge | currency : currency" ng-if="Order.shipping_charge && Order.shipping_charge>0"></span>
+			    <span class="label label-info" ng-if="!Order.shipping_charge || Order.shipping_charge==0">Free Shipping</span>
+			</div>
+			<div class="col-md-6">
+				<span style="font-weight:bold">Order Total: </span><span ng-bind-html="Order.total_discount_price | currency : currency"></span>
+			</div>
+		</div>
+		<div class="col-md-12" style="margin-top:25px">
+			<div class="col-md-6 col-sm-12" >
+				<div class="portlet green-meadow box" style="background-color :#83928F; border:1px solid #83928F">
+					<div class="portlet-title" style="background-color :#83928F;height:25px;">
+						<div class="caption" style="margin-top:10px">
+							Delivery Address 
+						</div>
+						
+					</div>
+					<hr />
+				<div class="portlet-body">
+					<div class="row static-info">
+						<div class="col-md-12 value">
+							<span>{{Order.delivery_address.name}}</span> <br ng-if="Order.delivery_address.name">
+							<span>{{Order.delivery_address.address}}</span> <br ng-if="Order.delivery_address.address">
+							<span>{{Order.delivery_address.landmark}}</span> <br ng-if="Order.delivery_address.landmark">
+							<span>{{Order.delivery_address.city}}</span> <br ng-if="Order.delivery_address.city">
+							<span>{{Order.delivery_address.state}}</span> <br ng-if="Order.delivery_address.state">
+							<span>{{Order.delivery_address.phone}}</span> <br ng-if="Order.delivery_address.phone">
+							<span>{{Order.delivery_address.pincode}}</span> <br ng-if="Order.delivery_address.pincode">
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<hr/>
+		<div class="row">
+		 <h3>Purchase Detail</h3>
+		</div>
+		<div class="row" style="border-bottom:1px solid #CCCCCC;padding:20px" >
+		  <div class="col-md-6" ng-repeat="(key,product) in Order.products track by $index" style="padding:10px">
+			<div class="col-md-4">
+				<div ng-repeat="(key,image) in product.images  track by $index">
+					<div ng-if="image.type=='cover'">
+						<img class="kw-prodimage-img-secondary" src="{{image.url}}" alt="{{book.name}}" title="{{book.name}}" height="100">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<a ui-sref="product({id:product.id})" style="line-height:2;font-size:15px">{{product.name}}</a><br/>
+				<span  style="line-height:2;font-size:13px">Quantity: {{product.quantity}}</span><br/>
+				<span  style="line-height:2;font-size:13px">SKU: {{product.sku}}</span><br/>
+				<span ng-bind-html="product.unit_price | currency : currency"></span><span>&nbsp;/&nbsp;unit</span>
+			</div>
+		  </div>
+		</div>
+	
+	</div>
+</div>
+</script>

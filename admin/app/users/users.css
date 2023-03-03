@@ -1,0 +1,37 @@
+.portlet.box.green-meadow {
+  border: 1px solid #2ae0bb;
+  border-top: 0; }
+
+.portlet.box.green-meadow {
+  border: 1px solid #2ae0bb;
+  border-top: 0; }
+ 
+.portlet.box.green-meadow > .portlet-title {
+    background-color: #1BBC9B; 
+    height:30px;
+    padding-left: 15px;
+}
+
+.portlet.box.green-meadow > .portlet-title > .caption {
+  color: #FFFFFF;
+  font-size: 20px;
+  line-height: 18px;
+  padding-top: 3px;
+ }
+
+.portlet > .portlet-body {
+    clear: both;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -ms-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px; 
+    padding-left: 10px;
+}
+
+.static-info{
+	padding-left:10px;
+	font-weight: 600;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}

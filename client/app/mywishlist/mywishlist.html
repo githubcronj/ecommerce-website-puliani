@@ -1,0 +1,80 @@
+<ng-include src="'components/tpl/confirmation.html'"></ng-include>
+<div class="kl-store kl-store-page single-product">
+<section id="content" class="hg_section ptop-40" style="min-height:400px">          
+			<div class="container">
+				<div class="row">
+					<div class="right_sidebar col-md-12">
+						<div class="kl-title-block clearfix text-left tbk-symbol--line  tbk-icon-pos--after-title">
+							<h2 class="tbk__title montserrat fs-34 fw-semibold black">My WishList</h2>
+							<span class="tbk__symbol ">
+								<span></span>
+							</span>
+							<h4 class="tbk__subtitle fs-22 fw-thin">Let's see what we've got inside.</h4>
+						</div>
+						
+						<div class="text_box" ng-if="wishlistdata.length==0">
+							<p>There are no items in your wishlist.</p>
+						    <input type="button" class="button golden-bg" name="update_cart" value="Continue Shopping" ui-sref="main">
+						</div>
+					</div>	
+				</div>	
+				 <div class="wishlist">
+                    <div class="grid-row" ng-repeat="(key,value) in wishlistdata track by $index" ng-if="wishlistdata.length > 0" style="margin-bottom:10px">
+                        <div class="col-sm-3 grid-col grid-img-wrapper" id="{{'parentElm_'+value.id}}">
+                            <div class="item-img">
+								<a class="item-img-link">
+									<div ng-repeat="(key,image) in value.images track by $index">
+										<div ng-if="image.type=='cover'">
+                                        <a ui-sref="product({id:value.id,name:value.name})">
+                                            <img src="{{image.url}}" alt="{{value.name}}" class="img-responsive" id="{{'bookTplImg_'+value.id}}">
+                                        </a>			
+										</div>
+									</div>
+								</a>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-9 grid-col">
+                            <div class="item-title">
+                                <a class="item-name" ui-sref="product({id:value.id,name:value.name})">{{value.name}}</a>
+                                <div class="discount-price" ng-if="value.original_price!=value.discount_price"><del class="old-price" ng-bind-html="value.orignal_price | currency : currencyType"></del>  {{((value.orignal_price-value.discount_price)*100/value.orignal_price).toFixed(2)}}%off</div>
+                            </div>
+                            <hr>
+                            <div class="item-description">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-6">
+                                        <div class="item-price">
+                                            <div class="final-price" ng-bind-html="value.discount_price | currency : currencyType"></div>
+                                        </div>
+                                        <div class="item-status">
+                                            <div class="item-stock green" ng-if="value.units_in_stock>0">In Stock</div>
+                                            <div class="item-stock red" ng-if="value.units_in_stock==0">Out Of Stock</div>
+                                        </div>
+                                        <div>
+                                            <form method="post" ng-if="value.units_in_stock>0">
+												<button type="button" class="single_add_to_cart_button button alt golden-bg" ng-click="onCartAdd(value.id)" flying-cart imgid="value.id">Add to cart</button>
+                                         <!--   <input type="button" class="btn btn-primary btn-sm add-cart" ng-click="onCartAdd(value.id)" value="ADD TO CART">  -->
+                                            </form>
+<!--											<h3 ng-if="value.units_in_stock<=0">Out Of Stock!</h3>-->
+                                            <div class="item-clear">
+                                                <a href="" ng-click="onWishlistRemove(value.id)">Remove from list</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6">
+                                        <div class="item-info">{{value.short_description}}</div>
+                                        <div class="extra-details"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+			</div>
+		</section>
+</div>
+<div infinite-scroll="myPagination()" infinite-scroll-disabled="isScrollDisabled">
+</div>
+
+           

@@ -1,0 +1,11 @@
+
+
+
+.closesearch {
+ color:white;
+ cursor:pointer;
+  opacity: 0.6;
+}
+.closesearch:hover {
+  opacity: 1.0;
+}

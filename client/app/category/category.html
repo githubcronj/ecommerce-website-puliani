@@ -1,0 +1,123 @@
+<div class="container" style="min-height:400px">
+<div class="kl-store kl-store-page single-product" style="height: 100%;margin:auto;">
+<!-- <button ng-click="gotoAnchor('t')" type="button">go</button>
+ -->	<section id="content" class="hg_section ptop-25">  
+		<div class="container" style="margin-top:2%">
+	
+					<div ng-show="mainCategory != 'students' && mainCategory != 'klj publication'" class="row">				
+						<div class="wrapperTop">
+		                    <div class="topper">
+									Browse All Categories Alphabatically[A-Z]
+							</div>
+	                    </div>		
+                    </div>
+                    <div ng-show="mainCategory == 'students'" class="row">				
+						<div class="wrapperTop">
+		                    <div class="topper">
+									Browse All Categories From List
+							</div>
+	                    </div>		
+                    </div>
+					<div class="row" ng-show="mainCategory != 'students' && mainCategory != 'klj publication'">
+
+						<div ng-show="category.length>0" class="col-sm-4">
+							<div data-ng-repeat="(key, childCategories) in subCateogories">
+
+							    <div class="back-gray" ng-show="$index%3==0">
+
+							        <label id="anchor{{key}}" style="margin-left:38%" class="viewCatHeader">{{key | uppercase}}</label>
+							    </div>
+
+							    <ul ng-show="$index%3==0">
+
+							        <div style="margin-bottom:3%" class="SecondLevelInner viewbulletedHyperlink" ng-repeat="category in childCategories">
+								        <a  class="sub-category" ng-click="redirectTo(category)">-{{category.name | uppercase}}
+								        </a>
+							        </div>
+							    </ul>
+					    	</div>
+					    	<hr />
+						</div>	
+						<div ng-show="category.length>1" class="col-sm-4">
+							<div data-ng-repeat="(key, childCategories) in subCateogories">
+
+							    <div class="back-gray" ng-show="$index%3==1">
+
+							        <label id="anchor{{key}}" style="margin-left:38%" class="viewCatHeader">{{key | uppercase}}</label>
+							    </div>
+
+							    <ul ng-show="$index%3==1">
+
+							        <div  style="margin-bottom:3%" class="SecondLevelInner viewbulletedHyperlink" ng-repeat="category in childCategories">
+								        <a  class="sub-category" ng-click="redirectTo(category)">-{{category.name | uppercase}}
+								        </a>
+							        </div>
+							    </ul>
+					    	</div>
+					    	<hr />
+						</div>	
+
+						<div ng-show="category.length>2" class="col-sm-4">
+							<div data-ng-repeat="(key, childCategories) in subCateogories">
+
+							    <div class="back-gray" ng-show="$index%3==2">
+
+							        <label id="anchor{{key}}" style="margin-left:38%" class="viewCatHeader">{{key | uppercase}}</label>
+							    </div>
+
+							    <ul ng-show="$index%3==2">
+
+							        <div  style="margin-bottom:3%" class="SecondLevelInner viewbulletedHyperlink" ng-repeat="category in childCategories">
+								        <a  class="sub-category" ng-click="redirectTo(category)">-{{category.name | uppercase}}
+								        </a>
+							        </div>
+							    </ul>
+					    	</div>
+					    	<hr />
+						</div>
+
+						<!-- <div ng-show="category.length>3" class="col-sm-3">
+							<div data-ng-repeat="(key, childCategories) in subCateogories">
+
+							    <div class="back-gray" ng-show="$index%4==3">
+
+							        <label style="margin-left:46%" class="viewCatHeader">{{key | uppercase}}</label>
+							    </div>
+
+							    <ul ng-show="$index%4==3" >
+
+							        <div  style="margin-bottom:3%" class="SecondLevelInner viewbulletedHyperlink" ng-repeat="category in childCategories">
+								        <a class="sub-category" ng-click="redirectTo(category)">-{{category.name | uppercase}}
+								        </a>
+							        </div>
+							    </ul>
+					    	</div>
+					    	<hr /> -->
+						</div>			
+
+					</div>
+
+		</div>
+
+		<div class="row" ng-show="mainCategory == 'students'">
+
+		<ul style="margin:10px">
+		<div style="margin-left:10%;" data-ng-repeat="(key, childCategories) in subCateogories">
+
+			
+
+		        <div style="margin-bottom:7px" class="viewbulletedHyperlink" ng-repeat="category in childCategories">
+			        <a style="cursor:pointer" ng-click="redirectTo(category)">-{{category.name  | uppercase}}
+			        </a>
+		        </div>
+			    
+	    	</div>
+
+		</div>
+		</ul>
+
+
+	</section>
+
+</div>
+</div>

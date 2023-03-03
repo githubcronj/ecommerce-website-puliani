@@ -1,0 +1,176 @@
+<div class="kl-store kl-store-page single-product">
+<section id="content" class="hg_section ptop-60">          
+			<div class="container">
+				<div class="row">
+					<div class="right_sidebar col-md-12">
+						<div class="kl-title-block clearfix text-left tbk-symbol--line  tbk-icon-pos--after-title">
+							<h2 class="tbk__title montserrat fs-34 fw-semibold black">ORDER SUMMARY</h2>
+							<span class="tbk__symbol ">
+								<span></span>
+							</span>
+						</div>
+						<div class="text_box" ng-if="cartData.products.length>0">
+							<div class="kl-store">
+								<form class="" ng-submit="onCouponSubmit(couponcode)">
+									<table class="shop_table cart" cellspacing="0">
+									<thead>
+									<tr>
+										<th class="product-thumbnail hidden-xs">
+											&nbsp;
+										</th>
+										<th class="product-name">
+											Product
+										</th>
+										<th class="product-price">
+											Price
+										</th>
+										<th class="product-quantity">
+											Quantity
+										</th>
+										<th class="product-subtotal">
+											Total
+										</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr class="cart_item" ng-repeat="(key,item) in cartData.products track by $index">
+										<td class="product-thumbnail hidden-xs">
+											<a ui-sref="product({id:item.id,name:item.name})"><img width="180" height="180" src="{{item.images[0].url}}" class="attachment-shop_thumbnail wp-post-image" alt="image1xxl"></a>
+										</td>
+										<td class="product-name">
+											<a  ui-sref="product({id:item.id,name:item.name})">{{item.name}} </a>
+										</td>
+										<td class="product-price">
+											<span class="amount" ng-bind-html="item.discount_price | currency : currencyType"></span>
+										</td>
+                                        <td class="product-quantity">
+                                            <div class="quantity">
+                                            	<!-- <span style="text-align:center">
+                                            		{{item.quantity}}
+                                            	</span> -->
+                                                <input type="number" step="1" min="1" max="{{item.units_in_stock}}" name="cart[bdbf73b3ab031409257f2c2d850f8ac2][qty]" value="{{item.quantity}}" title="Qty" class="input-text qty text" size="4" ng-model="item.quantity" ng-disabled="edit!==$index">
+                                            </div>
+                                            
+                                            <!-- <a ng-show="edit!=$index" style="padding-left:9px;text-decoration:underline;color: #337ab7;cursor:pointer;" ng-click="makeEditable($index)">
+														edit
+											</a>
+
+                                            <a ng-show="edit==$index" href="" style="padding-left:9px;text-decoration:underline;color: #337ab7;" ng-click="onQuantityChange(item.id,item.quantity,item.units_in_stock)">save
+
+                                            </a> -->
+                                        </td>
+<!--
+										<td class="product-quantity">
+											<div class="quantity">
+												<span class="amount" ng-bind-html="item.quantity"></span>
+											</div>
+								        </td>
+-->
+										<td class="product-subtotal">
+											<span class="amount" ng-bind-html="item.totalPrice | currency : currencyType"></span>
+										</td>
+									</tr>
+									<tr class="cart_item">
+										<td class="product-thumbnail hidden-xs">
+										
+										</td>
+										<td class="product-name">
+										
+										</td>
+										<td class="product-price">
+										
+										</td>
+										<td class="product-quantity">
+											<span style="font-weight:bold">SUB TOTAL</span>
+										</td>
+										<td class="product-subtotal">
+											<span class="amount" ng-bind-html="cartData.price.subTotal | currency : currencyType"></span>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="6" class="actions">
+										
+											<div class="coupon"  ng-if="cartData.coupon.details.id">
+												<span style="font-weight:bold">Coupon Applied: </span><span class="badge" uib-popover="{{cartData.coupon.details.description}}" popover-trigger="mouseenter">{{cartData.coupon.details.code}}</span>
+											</div>
+									<!--    <input type="submit" class="button" name="update_cart" value="Update Cart">   -->
+											<input type="hidden" id="_wpnonce" name="_wpnonce" value="1b98fc7d5b"><input type="hidden" name="_wp_http_referer" value="/demo/cart/">
+										</td>
+									</tr>
+									</tbody>
+									</table>
+								</form>
+								<div class="cart-collaterals">
+									<div class="pull-left" style="padding-left:15px">
+									<h2 style="color: #888;">SHIPPING ADDRESS</h2>
+									<div class="well well-sm">
+									<h4>{{userAddress[selectedAddressKey].name}}</h4>
+									<p>{{userAddress[selectedAddressKey].address}} <br/>
+											{{userAddress[selectedAddressKey].city}}, {{userAddress[selectedAddressKey].pincode}}<br/>
+											{{userAddress[selectedAddressKey].state}}<br/>
+											{{userAddress[selectedAddressKey].landmark}}</p>
+											<hr style="margin-top:10px;margin-bottom:10px" />
+											<span>{{userAddress[selectedAddressKey].phone}}</span>
+											<hr style="margin-top:10px;margin-bottom:10px" />
+									</div>
+									</div>
+									<div class="cart_totals ">
+										<h2>Cart Totals</h2>
+										<table cellspacing="0" class="mb-30">
+										<tbody>
+										<tr class="cart-subtotal">
+											<th>
+												Subtotal
+											</th>
+											<td>
+												<span class="amount" ng-bind-html="cartData.price.subTotal| currency : currencyType"></span>
+											</td>
+										</tr>
+										<tr class="cart-subtotal"  ng-if="cartData.coupon.details.id">
+											<th>
+												Coupon Discount
+											</th>
+											<td>
+												<span class="amount" ng-bind-html="'-'+cartData.price.discountAmount| currency : currencyType" style="color:green"></span>
+											</td>
+										</tr>
+										<tr class="shipping">
+											<th>
+												Shipping
+											</th>
+											<td>
+												 <span class="amount" ng-bind-html="cartData.price.shippingCharges| currency : currencyType"></span> <!-- <input type="hidden" name="shipping_method[0]" data-index="0" id="shipping_method_0" value="free_shipping" class="shipping_method">
+												<form class="kl-store-shipping-calculator" action="" method="post">
+													<p>
+														<a href="#" class="shipping-calculator-button">Calculate Shipping</a>
+													</p>
+												</form>   -->
+											</td>
+										</tr>
+										<tr class="order-total">
+											<th>
+												Total
+											</th>
+											<td>
+												<strong><span class="amount" ng-bind-html="cartData.price.amountPayable| currency : currencyType"></span></strong>
+											</td>
+										</tr>
+										</tbody>
+										</table>
+										<div class="pull-left col-md-3">
+										<input type="submit" class="button golden-bg" name="login" value="Previous" ng-click="switchToView('switch-address')" />
+										</div>
+										<div class="pull-right col-md-3">
+                                            
+										<input type="submit" class="button golden-bg" name="login" value="Make Payment" ng-click="makePayment()" />
+                                            
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>			
+				</div>	
+			</div>
+		</section>
+</div>

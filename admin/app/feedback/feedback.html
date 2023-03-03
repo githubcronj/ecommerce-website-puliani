@@ -1,0 +1,74 @@
+<legend>Feedbacks</legend>
+<div class="row">
+      <div class="col-md-12">
+
+                            <!-- Begin: life time stats -->
+                            <div class="portlet light portlet-fit portlet-datatable bordered">
+                                <div class="portlet-title">
+									
+
+                                    <div class="actions">
+                                        <div class="row">
+                                        <div class="col-sm-4">
+										<input class="form-control" type="text" ng-model="searchterm" placeholder="Enter search text..." />
+                                        </div>
+                                        <div class="btn-group btn-group-devided col-sm-2">
+                                            <button class="btn btn-primary" type="button" ng-click="onSearch(searchterm)"> Search</button>
+                                        </div>
+                                          <div ng-show="removeFilters" class="btn-group btn-group-devided col-sm-2">
+                                            <button class="btn btn-primary" type="button" ng-click="clearFilters()"> Clear Filters</button>
+                                        </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="table-container">
+                                        <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_orders">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="5%">Sr No </th>
+                                                    <th width="15%" style="padding-left:8px;text-align:left;cursor:pointer" ng-click="tableSorter('user_name')">Name <span ng-show="jsonBody.sortBy.attribute == 'user_name'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+                                                    <th width="15%" style="cursor:pointer" ng-click="tableSorter('user_email')">Email <span ng-show="jsonBody.sortBy.attribute == 'user_email'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+													<th width="15%" style="cursor:pointer" ng-click="tableSorter('user_phone_number')"> Phone Number <span ng-show="jsonBody.sortBy.attribute == 'user_phone_number'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+													<th width="10%" style="cursor:pointer" ng-click="tableSorter('text')"> Feedback <span ng-show="jsonBody.sortBy.attribute == 'text'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+                                           
+
+                                                </tr>
+                                                <tr role="row" class="filter" ng-repeat = "(key,feed) in feedbackData track by $index">
+                                                    <td>{{(currentPage-1) * jsonBody.limit + $index  + 1}} </td>
+                                                    <td style="padding-left:8px;text-align:left">
+                                                        {{feed.user_name}}
+                                                    </td>
+                                                    <td>
+                                                        {{feed.user_email}}
+                                                    </td>
+                                                    <td>
+                                                        {{feed.user_phone_number}}
+                                                    </td>
+													<td>
+                                                        {{feed.text}}
+                                                    </td>
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+                                            <!--  <div class="pull-right">
+                                                 <uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" ng-click="pageChanged()" class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
+                                              </div> -->
+                                              <div class="pull-right">
+                                                <uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="5" max-size="5" ng-click="onPageClick()" class="pagination-sm" boundary-links="true" rotate="false"></uib-pagination>
+                                              </div>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End: life time stats -->
+                        </div>
+                    </div>
+
+

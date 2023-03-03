@@ -1,0 +1,90 @@
+<ng-include src="'app/news/modal/newsModal.html'"></ng-include>
+<h3>News:</h3>
+<hr />
+<div class="row">
+      <div class="col-md-12">
+
+                            <!-- Begin: life time stats -->
+                            <div class="portlet light portlet-fit portlet-datatable bordered">
+                                <div class="portlet-title">
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                    <div class="actions">
+                                        <div class="btn-group btn-group-devided">
+                                            <button class="btn btn-primary" type="button" ng-click="addNews('md','add')"> Add News</button>
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                    <div style="margin-left:20px" class="col-sm-2">
+                                     <div class="actions" ng-show="removeFilters">
+                                        <div class="btn-group btn-group-devided">
+                                            <button class="btn btn-primary" type="button" ng-click="clearFilters()"> Clear Filters</button>
+                                        </div>
+
+                                    </div>
+                                    </div>
+
+                                </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="table-container">
+
+                                        <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_orders">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="4%">Sr No</th>
+                                                    <th class="focusClass" width="15%" ng-click="tableSorter('title')"> Title <span ng-show="jsonBody.sortBy.attribute == 'title'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+
+                                                    <th class="focusClass" width="30%" ng-click="tableSorter('description')"> Description <span ng-show="jsonBody.sortBy.attribute == 'description'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+                                                    
+                                                    <th class="focusClass" width="10%" ng-click="tableSorter('created_at')"> Posted On <span ng-show="jsonBody.sortBy.attribute == 'created_at'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+                                                    <th width="10%"> Actions </th>
+
+                                                </tr>
+                                                <tr role="row" class="filter" ng-repeat = "value in news">
+                                                    <td>
+                                                        {{(currentPage-1) * newsPerPage + $index  + 1}}
+                                                    </td>
+                                                    <td>
+                                                        {{value.title}}
+                                                    </td>
+
+                                                    <td>
+                                                        {{value.description}}
+                                                    </td>
+
+                                                    <td>
+                                                        {{value.created_at | date:'yyyy-MM-dd'}}
+                                                    </td>
+
+
+                                                    <td>
+                                                       <button type="submit" class="btn btn-primary golden-bg-clr golden-border-clr" ng-click="addNews('md','edit',value)"> <i class="fa fa-edit"></i> </button>
+
+                                                        <button type="submit" class="btn btn-danger golden-bg-clr golden-border-clr" ng-click="deleteNews(value)"> <i class="fa fa-trash"></i> </button>
+                                                    </td>
+
+
+
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+                                            <!--  <div class="pull-right">
+                                                 <uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" ng-click="pageChanged()" class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
+                                              </div> -->
+                                              <div class="pull-right">
+                                                <uib-pagination total-items="totalNews" ng-model="currentPage" items-per-page="newsPerPage" max-size="maxSize" ng-click="pageChanged()" class="pagination-sm" max-size="maxSize" boundary-links="true" rotate="false"></uib-pagination>
+                                              </div>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End: life time stats -->
+                        </div>
+                    </div>

@@ -1,0 +1,182 @@
+<div class="kl-store kl-store-page single-product" style="height: 100%;margin:auto;">
+
+<section id="content" class="hg_section ptop-25">  
+			<div class="container">
+	
+				<div class="row">
+					<div class="right_sidebar col-md-12">
+						<div class="product">
+							<div class="row product-page">
+								<div class="single_product_main_image col-sm-7 col-md-5 col-lg-4">
+									
+									<div class="zn_badge_container">
+										<span class="zonsale zn_badge_sale" ng-if="productDetail.units_in_stock<=0">Out Of Stock!</span>
+											
+									</div>
+									
+									<div class="row" >
+										<a href="" ng-click="toggleFullScreen()" style="z-index:1;position:absolute;" title="fullscreen">
+											<span class="glyphicon glyphicon-fullscreen"></span>
+										</a>
+									</div>
+
+									<div ng-repeat="(key,image) in productDetail.images track by $index" style="opacity:0;position:absolute">
+										<div ng-if="image.type=='cover'">
+											<img src={{image.url}} class="attachment-shop_single wp-post-image" alt="Image Not Available" title={{productDetail.name}} data-o_src={{image.img}} data-o_title={{productDetail.name}} data-o_alt="Image Not Available" id="{{'bookTplImg_'+productDetail.id}}">
+										</div>
+									</div> 
+
+									
+									
+									
+									
+									<div class="image"  id="{{'parentElm_'+productDetail.id}}">
+										
+										<a itemprop="image" class="kl-store-main-image zoom" title="">
+											<div id="flipbook" fullscreen="isFullscreen" style="display:none">
+<!--
+												<div class="hard"> Puliani Law Books </div>
+												<div class="hard"></div>
+-->
+												<div ng-repeat="(key,image) in productDetail.images track by $index">
+													<img src="{{image.url}}" class="alwaysHundred">
+												</div>
+
+												<div class="hard"></div>
+											</div>	
+										</a>
+
+										<div class="thumbnails columns-4" ng-show="productDetail.images.length>0" >
+										<slick infinite=false slides-to-show=3 slides-to-scroll=2 settings="IMGslickConfig" ng-if="productDetail.images.length>0">
+											<img  src={{getThumbnailImage(image.url)}} class="attachment-shop_single wp-post-image" style="height:100px;width:auto;margin:10px;border:2px solid black;object-fit:cover;cursor:pointer" alt="Image Not Available" title={{productDetail.name}} data-o_src={{image.img}} data-o_title={{productDetail.name}} data-o_alt="Image Not Available" ng-repeat="(key,image) in productDetail.images track by $index"  ng-click="onThumbClick(key)">
+										</slick>
+										</div>
+									</div>
+
+								</div>
+								<div class="col-sm-2 col-md-3 col-lg-2 hidden-xs">
+									<img src="assets/images/turn-page-instructions.png" />
+								</div>
+
+								<div class="col-sm-3 col-md-4 col-lg-6">
+
+									<div class="summary entry-summary">
+
+										<h1 itemprop="name" class="product_title entry-title">{{productDetail.name}}</h1>
+										
+											<p class="price" ng-if="productDetail.orignal_price != productDetail.discount_price">
+												<del data-was="WAS"><span class="amount" ng-bind-html="productDetail.orignal_price | currency : currencyType"></span></del><ins data-now="NOW"><span class="amount" ng-bind-html="productDetail.discount_price | currency : currencyType"></span>
+                                                </ins>
+                                                <img src="assets/images/wishlist_bg_transparent.png" class="btn-wishlist" ng-click="onAddToWishList(productDetail.id)"/>
+											</p>
+
+											<p class="price" ng-if="productDetail.orignal_price == productDetail.discount_price">
+												<ins data-now="NOW"><span class="amount" ng-bind-html="productDetail.discount_price | currency : currencyType"></span></ins>
+                                                <img src="assets/images/wishlist_bg_transparent.png" class="btn-wishlist" ng-click="onAddToWishList(productDetail.id)"  />
+											</p>
+											<meta itemprop="price" content="{{productDetail.discount_price}}">
+											<meta itemprop="priceCurrency" content="GBP">
+											<link itemprop="availability" href="http://schema.org/InStock">
+									
+										<div itemprop="description">
+											<p class="desc kw-details-desc">
+												{{productDetail.short_description}}
+											</p>
+										</div>
+										<form class="variations_form cart" method="post" ng-submit="onCartAdd(productDetail.id,defaultQuantity, productDetail.units_in_stock)">
+											<!-- <table class="variations" cellspacing="0">
+											<tbody>
+											<tr>
+												<td class="label">
+													<label for="pa_color">color</label>
+												</td>
+												<td class="value">
+													<select id="pa_color" class="" name="attribute_pa_color" data-attribute_name="attribute_pa_color">
+														<option value="">Choose an option</option>
+														<option value="black">Black</option>
+														<option value="blue" selected="selected">Blue</option>
+													</select>
+													<a class="reset_variations" href="#" style="visibility: visible; display: inline;">Clear selection</a>
+												</td>
+											</tr>
+											</tbody>
+											</table> -->
+											<div class="single_variation_wrap">
+<!--
+												<div class="single_variation" ng-if="productDetail.units_in_stock>0">
+													<span class="price"><del><span class="amount" ng-bind-html="productDetail.orignal_price | currency : currencyType" ng-if="productDetail.orignal_price != productDetail.discount_price"></span></del><ins><span class="amount" ng-bind-html="productDetail.discount_price | currency : currencyType"></span></ins></span>
+												</div>
+-->
+												<div class="variations_button" ng-if="productDetail.units_in_stock>0">
+													<div class="quantity">
+														<!-- <input type="number" step="1" name="quantity" ng-value="1" title="Qty" class="input-text qty text" min="1" max="{{productDetail.units_in_stock - units_in_localStorage}}" ng-model="$parent.defaultQuantity" required> -->
+														<input type="number" name="quantity" ng-value="1" title="Qty" class="input-text qty text" ng-model="$parent.defaultQuantity">
+													</div>
+													
+													<button type="submit" class="single_add_to_cart_button button alt golden-bg" flying-cart imgid="productDetail.id" defaultquantity="$parent.defaultQuantity" unitsinstock="productDetail.units_in_stock">
+													
+														Add to cart
+													
+													</button>
+
+													<input type="hidden" name="add-to-cart" value="40">
+													<input type="hidden" name="product_id" value="40">
+													<input type="hidden" name="variation_id" class="variation_id" value="1171">
+												</div>
+												
+												<div class="variations_button" ng-if="productDetail.units_in_stock>0">
+													<label ng-show="productDetail.units_in_stock>0" class="inStock">
+												 		In Stock
+												 	</label>
+												</div>
+
+												<div class="variations_button" ng-if="productDetail.units_in_stock<=0">
+                                            		<label class="outOfStock">
+                                            			Out of Stock
+                                            		</label>
+												</div>
+											
+										</form>
+										<div class="product_meta">
+<!--                                            <span class="posted_in"><b>Category:</b> <a ui-sref="product-category({ type: 'category', value: productDetail['categories.category_id'], filter: '', name:productDetail['categories.category_name']})" style="text-transform:uppercase">{{productDetail['categories.category_name']}}</a></span>-->
+                                            <span ng-if="productDetail.attribute.author" class="sku_wrapper"><b>Author:</b> <span class="sku" itemprop="sku" data-o_sku={{productDetail.attribute.author}}>{{productDetail.attribute.author}}</span></span>
+                                            <span ng-if="productDetail.attribute.publicationName" class="sku_wrapper"><b>Publication:</b> <span class="sku" itemprop="sku" data-o_sku={{productDetail.attribute.publicationName}}>{{productDetail.attribute.publicationName}}</span></span>
+                                            <span ng-if="productDetail.attribute.edition"  class="sku_wrapper"><b>Edition:</b> <span class="sku" itemprop="sku" data-o_sku={{productDetail.attribute.edition}}>{{productDetail.attribute.edition}}</span></span>
+                                            <span ng-if="productDetail.attribute.isbn" class="sku_wrapper"><b>ISBN:</b> <span class="sku" itemprop="sku" data-o_sku={{productDetail.attribute.isbn}}>{{productDetail.attribute.isbn}}</span></span>
+
+                                            
+                                            <!-- <span ng-if="productDetail.sku" class="sku_wrapper"><b>SKU:</b> <span class="sku" itemprop="sku" data-o_sku={{productDetail.sku}}>{{productDetail.sku}}</span></span> -->
+										</div>
+									</div>
+									<!-- .summary -->
+								</div>
+							</div>
+							<div ng-if="productDetail.long_description" class="tabbable">
+								<ul class="nav fixclear">
+									<li class="active"><a href="#tab-description" data-toggle="tab">Description</a></li>
+									<li class="" style="display:none;"><a href="#tab-reviews" data-toggle="tab">Reviews (3)</a></li>
+								</ul>
+								<div class="tab-content">
+									<div  class="tab-pane active" id="tab-description">
+										<h2 class="fs-18">DESCRIPTION</h2>
+										<p>
+										{{productDetail.long_description}}
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="related products">
+								<h2>Related Books</h2>
+								<ul class="products">
+                                     <div class="book-height col-md-3 col-lg-3 col-sm-4 col-xs-6" ng-repeat="(key,book) in RelBooks track by $index" style="margin-top:10px">
+										<book-tpl book='book'></book-tpl>
+                                    </div>
+								</ul>
+							</div>
+						</div>
+					</div>	
+						
+				</div>	
+			</div>
+		</section>
+		</div>

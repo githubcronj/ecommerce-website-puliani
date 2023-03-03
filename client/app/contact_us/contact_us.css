@@ -1,0 +1,10 @@
+@media(min-width:768px){
+	
+	.myCartStyle{
+		position:fixed !important;
+		top:5em !important;
+		right:200px !important;
+	}
+
+}
+

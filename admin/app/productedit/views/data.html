@@ -1,0 +1,129 @@
+
+				<form class="form-horizontal" ng-submit="navigate('image')">
+				<fieldset>
+        <div style="padding-bottom:15px" ng-show="currentOperation === 'edit'">
+        Book SKU:  <span style="color:green">{{data.product.sku}}</span>
+        </div>
+				<!-- Text input-->
+        <h4><b>PRODUCT DETAILS</b></h4>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="textinput">Select Cateogiries</label>
+					<div class="col-md-5">
+						<div>
+										<multiple-autocomplete ng-model="category.categories"
+														 suggestions-arr="optionsList" object-property="name" ng-keyup="OpenCourse(this)">
+										</multiple-autocomplete>
+						</div>
+					</div>
+				</div>
+
+
+
+
+<!-- Textarea -->
+
+				<div class="form-group">
+          <label class="col-md-4 control-label" for="address">Orignal Price </label>
+          <div class="col-md-5">
+            <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-inr" aria-hidden="true"></i></span>
+				    <input type="number" class="form-control" name="orignal_price"  ng-model="data.product.orignal_price" min="0" step="0.01" required />
+          </div>
+          </div>
+				</div>
+
+
+    				<div class="form-group">
+              <label class="col-md-4 control-label" for="address">Discounted Price </label>
+              <div class="col-md-5">
+                <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-inr" aria-hidden="true"></i></span>
+    				    <input type="number" class="form-control" name="discount_price"  ng-model="data.product.discount_price" min="0" step="0.01" required />
+              </div>
+              </div>
+    				</div>
+
+        <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput">Units in stock</label>
+              <div class="col-md-5">
+              <input id="textinput"  type="number"  class="form-control input-md" ng-model="data.product.units_in_stock" min="0" required>
+              </div>
+          </div>
+          <hr />
+
+          <h4><b>BOOK DETAILS</b></h4>
+
+         <uib-accordion ng-show="showSimilarProducts">
+             <uib-accordion-group is-open="isopen" ng-init="isOpen=false">
+                    <uib-accordion-heading>
+                        <button class="btn btn-primary">Similar Products</button>
+                        <i class="pull-right glyphicon glyphicon-remove" ng-click="onCloseClick($event)" style="margin-top: 11px;"></i> 
+                    </uib-accordion-heading>
+
+                 <a style="display:inline-block" ng-repeat="(key,Product) in ProductNames track by $index" ng-click="productOverview(Product.id)">{{(key+1)+". "+Product.name+"   "}}&nbsp;&nbsp;&nbsp;</a>
+                 
+            </uib-accordion-group>
+         </uib-accordion>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Name  of book</label>
+            <div class="col-md-5">
+            <input id="textinput" name="textinput" type="text"  class="form-control input-md" ng-model="data.product.name"  autocomplete="off" uib-typeahead="product.name for product in ProductNames"  ng-change="onProductNameType(data.product.name)"  ng-blur="onProductNameBlur()" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Author</label>
+            <div class="col-md-5">
+            <input id="textinput"  type="text"  class="form-control input-md" ng-model="data.product.attribute.author" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Publication Name</label>
+            <div class="col-md-5">
+              <input id="textinput"  type="text"  class="form-control input-md" ng-model="data.product.attribute.publicationName" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Edition</label>
+            <div class="col-md-5">
+                <input id="textinput"  type="text"  class="form-control input-md" ng-model="data.product.attribute.edition" required>
+            </div>
+          </div>
+          
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="textinput">ISBN</label>
+          <div class="col-md-5">
+          <input id="textinput"  type="text"  ng-class="isuniqueisbn === true || isuniqueisbn === undefined ? 'form-control input-md ' :'form-control input-md nonuniqueisbn'" ng-model="data.product.attribute.isbn" ng-blur="checkUniqueISBN()" required>
+          <label ng-show="isuniqueisbn === false" style="color:red">isbn is not valid </label>
+        
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="textinput">Short Description</label>
+          <div class="col-md-5">
+          <textarea   class="form-control input-md" rows="3" ng-model="data.product.short_description"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="textinput">Long Description</label>
+          <div class="col-md-5">
+          <textarea   class="form-control input-md" rows="5" ng-model="data.product.long_description"></textarea>
+          </div>
+        </div>
+
+       <!--  <div class="pull-right">
+          <button class="btn btn-primary" type="submit"> Next </button>
+        </div> -->
+
+      </fieldset>
+
+	</form>

@@ -1,0 +1,34 @@
+<div class="kl-store kl-store-page single-product">
+<div class="container checkout-topmargin">
+<div class="stepwizard">
+    <div class="stepwizard-row setup-panel">
+		<div class="stepwizard-step" ng-repeat="(key,opt) in checkoutOpt track by $index">
+            <img width="35" height="20"  ng-src="{{opt.isActive? opt.activeImg : opt.inactiveImg}}" ng-click="opt.isDisabled || onBubbleClick(opt.ref)" ng-disabled="opt.isDisabled"/>
+            <p>{{opt.name}}</p>
+        </div>
+    </div>
+</div>
+<div ng-switch="switchedView">
+	 <div class="row setup-content" ng-switch-when="switch-account">
+        <div class="col-xs-12">
+            <div class="col-md-12">
+               <ng-include src="'components/tpl/checkout/account.html'"></ng-include>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row setup-content" ng-switch-when="switch-address">
+        <ng-include src="'components/tpl/checkout/shipping.html'"></ng-include>         
+    </div>
+
+    <div class="row setup-content" ng-switch-when="switch-review">
+        <ng-include src="'components/tpl/checkout/finalreview.html'"></ng-include>
+    </div>
+    
+    <div class="row setup-content" ng-switch-when="switch-payment">
+        <ng-include src="'components/tpl/checkout/payment.html'"></ng-include>
+    </div>
+
+</div>
+</div>
+</div>

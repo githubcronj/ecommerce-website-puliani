@@ -1,0 +1,17 @@
+<script type="text/ng-template" id="confirmDeleteImage.html">
+  <div class="modal-body">
+     <span style="font-weight:bold;font-size:24px;">Confirmation</span>
+    <button type="button" class="close"  aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+      <hr style="border-top:1px solid black;"/>
+
+   <div class="modal-body">
+      <p>{{message}}?</p>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-danger"
+            ng-click="confirmDelete()">Yes</button>
+      <button type="button" class="btn btn-primary"
+            ng-click="close()">No</button>
+
+</div>
+</script>

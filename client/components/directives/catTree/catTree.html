@@ -1,0 +1,7 @@
+
+	<ul class="children" >
+		<li class="cat-item" ng-repeat="(key,category) in cat track by $index">
+			<a ui-sref="product-category({ type: 'category', value: category.id, filter:filter, name: category.name })" style="text-transform:uppercase;">{{category.name}}</a>
+			<cat-tree cat="category.child" filter="filter" ng-if="category.child.length>0"></cat-tree>
+		</li>
+	</ul>

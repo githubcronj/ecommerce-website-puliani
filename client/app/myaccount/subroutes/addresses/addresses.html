@@ -1,0 +1,32 @@
+<ng-include src="'components/tpl/addAddressModal.html'"></ng-include>
+<!-- Form Name -->
+<legend>Addresses</legend>
+<h4><span ng-if="userAddress.length==0">No Address Saved</span></h4>
+
+<div class="row">
+ <div class="col-md-4 col-md-offset-1" ng-repeat="(key,value) in userAddress">
+ 	<div ng-show="key==0">
+ 		<label class="addressTitle">Billing Address</label>
+ 	</div>
+ 	<div ng-show="key!=0">
+ 		<label class="addressTitle">Shipping Address</label>
+ 	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">{{value.name}} <span class="glyphicon glyphicon-pencil pull-right glyph-hover-effect" ng-click="openAddress('md','edit',value,key)"></span><span class="glyphicon glyphicon-trash pull-right glyph-hover-effect" ng-click="onAddressDelete(key)">&nbsp;</span></div>
+		<div class="panel-body" style="word-break:break-all">
+			<p>{{value.address}} <br/>
+			{{value.city}}, {{value.pincode}}<br/>
+			{{value.state}}<br/>
+			{{value.landmark}}</p>
+			<hr style="margin-top:10px;margin-bottom:10px" />
+			<span>{{value.phone}}</span>
+			<hr style="margin-top:10px;margin-bottom:10px" />
+		</div>
+	</div>	
+  </div>
+</div>
+<div class="row">
+<div class="col-md-offset-1 pull-right" style="padding-right:20px">
+	<input type="submit" class="btn btn-primary golden-bg-clr golden-border-clr" name="address" value="Add Address" ng-click="openAddress('md','add','','')"/>
+</div>
+</div>

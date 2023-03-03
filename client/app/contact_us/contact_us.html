@@ -1,0 +1,68 @@
+<div class="container">
+	<div class="row">
+	<h2>Contact Us</h2>
+	<hr style="display: block;margin-top: 0.5em;margin-bottom: 0.5em;margin-left: auto;margin-right: auto;border-style: inset;
+    border-width: 1px;">
+		<div class="col-sm-6">
+		
+		
+		<h5><b>Email: </b><a>Pulianiweb@gmail.com</a></h5>
+			<h5><b>Phone: </b>9945909450</h5>
+			<h5><b>Address: </b><i>Ground Floor, Sujatha Complex, 1st Cross Road, Opp IDBI Bank,, Gandhi Nagar, Bengaluru, Karnataka 560009</i></h5>
+
+         <div style="margin-bottom: 20px">
+		<ng-map  zoom="15" center="12.9768678, 77.5770503">
+			 <marker position="12.9768678, 77.5770503"
+      icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png">
+    </marker>
+		</ng-map>
+		</div>
+		</div>
+		<br>
+		<div class="col-sm-6">
+			<form class="form-horizontal" ng-submit="contactSave()">
+
+				  <div class="form-group">
+				    <label for="Name" class="col-sm-3 control-label">Name:</label>
+				    <div class="col-sm-9">
+				      <input type="text" class="form-control" ng-model="user.user_name"  placeholder="Enter name" required="required">
+				    </div>
+				  </div>
+				  
+				
+				  <div class="form-group">
+				    <label for="Email" class="col-sm-3 control-label">Email:</label>
+				    <div class="col-sm-9">
+				      <input type="email" class="form-control" ng-model="user.user_email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Ex:xyz@gmail.com"placeholder="Email" required="required">
+				    </div>
+				  </div>
+
+				  <div class="form-group">
+				    <label for="Phone" class="col-sm-3 control-label">Phone:</label>
+				    <div class="col-sm-9">
+				      <input type="text" minlength="9" maxlength="10" class="form-control" pattern="[0-9]{10}" title="Ex:9845830694" ng-model="user.user_phone_number"  placeholder="Phone" required>
+				    </div>
+				  </div>
+				  
+				  
+				  <div class="form-group">
+				    <label for="Feedback" class="col-sm-3 control-label">Comment / Enquiry:</label>
+				    <div class="col-sm-9">
+				     <textarea class="form-control" ng-model="user.text" rows="3"></textarea>
+				    </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <div class="col-sm-offset-3 col-sm-9">
+				      <input  type="submit" class="btn btn-default"></input>
+				    </div>
+				  </div>
+			</form>
+	</div>
+	<div class="row">
+	<div class="col-md-12">
+		 
+	</div>
+	</div>
+
+</div>

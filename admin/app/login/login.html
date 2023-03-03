@@ -1,0 +1,11 @@
+<div class="login-page">
+  <div class="form">
+   
+    <form class="login-form" ng-submit=loginAdmin()>
+      <input type="email" placeholder="email" ng-model="login.email" required/>
+      <input type="password" placeholder="password" ng-model="login.password" required/>
+      <button type="submit">login</button>
+      <span style="color:red" ng-bind="messageInvalid"></span>
+    </form>
+  </div>
+</div>

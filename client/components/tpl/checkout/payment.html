@@ -1,0 +1,26 @@
+
+<div class="container" style="padding-top:30px;padding-bottom:60px;position:relative;left:3%;" ng-show="paymentStatus=='success'">
+<span><img src="assets/images/success_pay.png" style="height:35px" /><span style="font-weight:bold;font-size:25px;    vertical-align: middle;">&nbsp;Payment Success</span></span><br/><br/>
+<span style="font-size:14px">Your payment has been processed succesfully.<br/>
+We will send you a confirmation email shortly.<br/>
+For your reference, Your OderId is <span style="font-weight:bold">{{ordernumber}}</span>.<br/><br/></span>
+    
+<div>
+<button type="button" class="button golden-bg" ui-sref="myorders">View My Order</button>
+<button type="button" class="button golden-bg" ui-sref="main">Continue Shopping</button>
+</div>
+    
+</div>
+
+<div class="container" style="padding-top:30px;padding-bottom:60px;position:relative;left:3%;" ng-show="paymentStatus=='failure'">
+<span><img src="assets/images/payment-fail.png" style="height:35px" /><span style="font-weight:bold;font-size:25px;    vertical-align: middle;">&nbsp;Payment failed</span></span><br/><br/>
+<span style="font-size:14px">Sorry, your payment has been failed.<br/>
+No charges were made.<br/><br/></span>
+    
+<div>
+<button type="button" class="button golden-bg" ui-sref="checkout({status:'inprogress',ordernumber:null})">Try Again</button>
+<button type="button" class="button golden-bg" ui-sref="main">Continue Shopping</button>
+</div>
+    
+</div>
+

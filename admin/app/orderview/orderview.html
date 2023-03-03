@@ -1,0 +1,105 @@
+
+<ng-include src="'app/orderview/modals/viewFullOrder.html'"></ng-include>
+<ng-include src="'app/orderview/modals/UpdateTrackingModal.html'"></ng-include>
+
+<legend>Orders</legend>
+
+<div class="row">
+      <div class="col-md-12">
+
+                            <!-- Begin: life time stats -->
+                            <div class="portlet light portlet-fit portlet-datatable bordered">
+                                <div class="portlet-title"> 
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                        
+                                            <div class="actions">
+                                                <input class="form-control" type="text" ng-model="searchterm" placeholder="Enter search text..." />
+                                            </div>
+
+                                        </div>
+                                        
+                                        <div class="col-sm-1">
+                                                <div class="btn-group btn-group-devided">
+                                                    <button class="btn btn-primary" type="button" ng-click="onSearch(searchterm)"> Search
+                                                    </button>
+                                                </div>
+                                        </div>
+                                       <!-- <span>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="pull-right btn btn-primary" ng-csv="ExportOrders" filename="user.csv"  csv-header="['Order Number','Total Price','Shipping Charge','Total Discount Price','Status','Created At']">Export Orders</button></span>-->
+     
+                                        
+                                        <div class="col-sm-2">
+                                        <label style="padding-left:45px">Tracking Filter</label>
+                                        </div>
+                                        <div class="col-sm-4">
+									       <select class="pull-left" ng-options="item.value as item.name for item in filter track by item.value" ng-model="selectedFilter" ng-change="isFilterChange(selectedFilter)"></select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                        <button ng-if="searchIn" class="removeFilter" ng-click="removeFilters()"> Clear Filters</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="table-container">
+                                        <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_orders">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="3%">Sr No</th>
+                                                    <th width="10%" style="padding-left:8px;text-align:left;"> Order No. </th>
+                                                    <th width="5%" style="cursor:pointer" ng-click="tableSorter('u.email')">Email<span ng-show="jsonBody.sortBy.attribute == 'u.email'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+                                                    <th width="5%" style="cursor:pointer" ng-click="tableSorter('o.total_discount_price')">Order Total<span ng-show="jsonBody.sortBy.attribute == 'o.total_discount_price'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+                                                    <th width="5%" style="padding-left:8px;text-align:left;"> Status </th>
+													<th width="10%" style="cursor:pointer" ng-click="tableSorter('s.tracking_number')">Tracking<span ng-show="jsonBody.sortBy.attribute == 's.tracking_number'"><span ng-show="jsonBody.sortBy.direction == 'DESC'" class="fa fa-sort-desc"></span><span ng-show="jsonBody.sortBy.direction == 'ASC'" class="fa fa-sort-asc"></span></span></th>
+                                                	<th width="3%"> </th>
+                                                </tr>
+                                                <tr role="row" class="filter" ng-repeat = "(key,Order) in AllOrders track by $index">
+                                                    <td>  {{(currentPage-1) * jsonBody.limit + $index  + 1}}</td>
+                                                    <td style="padding-left:8px;text-align:left">
+                                                     	<a href="" ng-click="onViewOrder(Order)">{{Order.order_number}}</a>
+                                                    </td>
+                                                    <td>
+                                                        {{Order.email}}
+                                                    </td>
+                                                    <td ng-bind-html="Order.total_discount_price | currency:currency" >
+                                                        
+                                                    </td>
+													<td>
+                                                      {{Order.order_status}}
+                                                    </td>
+													<td>
+                                                       <!-- <a href="" ng-click="onViewTracking(Order)" title="view shipping data" ng-if="Order.tracking_number">{{Order.tracking_number}}</a> -->
+                                                       <p ng-if="Order.tracking_number">
+                                                       {{Order.tracking_number}}
+                                                       </p>
+                                                       <span ng-if="!Order.tracking_number">No data</span>
+													</td>
+													<td style="text-align: center;">
+                                                       <a href="" ng-if="Order.order_status!='payment failed'" ng-click="onUpdateTracking(Order)" title="">Update Tracking</a>
+                                                    </td>
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+                                            <!--  <div class="pull-right">
+                                                 <uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" ng-click="pageChanged()" class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
+                                              </div> -->
+
+                                              <div class="pull-right">
+                                                <uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="5" max-size="5" ng-click="onPageClick()" class="pagination-sm" boundary-links="true" rotate="false"></uib-pagination>
+                                              </div>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <div style="margin-left:50px;" ng-show="AllOrders && AllOrders.length <= 0">
+                                        <label>There is no orders.</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End: life time stats -->
+                        </div>
+                    </div>

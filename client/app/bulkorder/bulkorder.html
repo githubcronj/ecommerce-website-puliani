@@ -1,0 +1,52 @@
+
+<div class="container">
+ <h2>Bulk Enquiry</h2>
+        <hr style="display: block;margin-top: 0.5em;margin-bottom: 0.5em;margin-left: auto;margin-right: auto;border-style: inset;
+    border-width: 1px;">
+	<div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+			<form class="form-horizontal" ng-submit="contactSave()">
+
+				  <div class="form-group">
+				    <label for="Name" class="col-sm-2 control-label">Name:</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" ng-model="user.user_name"  placeholder="Enter name" required="required">
+				    </div>
+				  </div>
+				  
+				
+				  <div class="form-group">
+				    <label for="Email" class="col-sm-2 control-label">Email:</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" ng-model="user.user_email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Ex:xyz@gmail.com" required>
+				    </div>
+				  </div>
+
+				  <div class="form-group">
+				    <label for="Phone" class="col-sm-2 control-label">Phone:</label>
+				    <div class="col-sm-10">
+				      <input type="text" minlength="10" maxlength="10" class="form-control" pattern="[0-9]{10}" title="Ex:9845830694" ng-model="user.user_phone_number"  placeholder="Phone">
+				    </div>
+				  </div>
+				  
+				  
+				  <div class="form-group">
+				    <label for="Feedback" class="col-sm-2 control-label">Enquiry:</label>
+				    <div class="col-sm-10">
+				     <textarea class="form-control" ng-model="user.text" rows="3"></textarea>
+				    </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <div class="col-sm-offset-2 col-sm-10">
+				      <input  type="submit" class="btn btn-default"></input>
+				    </div>
+				  </div>
+			</form>
+	</div>
+	<div class="row">
+	<div class="col-md-12">
+		 
+	</div>
+	</div>
+</div>

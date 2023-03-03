@@ -1,0 +1,8 @@
+Thumbd server:-
+
+thumbd server --aws_key=AKIAIPH2UAXLZY2PDOSA --aws_secret=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 --sqs_queue=ThumbnailCreator --bucket=pulianitest --aws_region=ap-southeast-1 --s3_acl=public-read
+
+Run Elastic search:
+
+cd /opt/elasticsearch2.0.0/bin
+run: /elasticsearch

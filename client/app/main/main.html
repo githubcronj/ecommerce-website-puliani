@@ -1,0 +1,191 @@
+		<!--	<uib-carousel interval="5000" no-wrap="false" ng-if="slides.length>0">
+				<uib-slide ng-repeat="(keyk,slide) in slides" active="slide.active" index="key">
+					<img ng-src="{{slide.image}}" style="margin:auto;max-height:500px;width:100%"/>
+				</uib-slide>
+			</uib-carousel>  -->
+<div class="banner-container">
+<slick infinite=true slides-to-show=1 slides-to-scroll=1 settings="IMGslickConfig" ng-if="slides.length>0">
+	<img ng-src="{{slide.url}}" style="margin:auto;max-height:500px;width:100%;cursor:pointer"  ng-repeat="(keyk,slide) in slides"/>
+</slick>
+</div>
+
+			<slick infinite=true slides-to-show=1 slides-to-scroll=1 settings="IMGslickConfig" ng-if="testimonals.length>0">
+			<li ng-repeat="(key,testimonal) in testimonals" style="cursor:pointer"> 
+				<div class="latest_posts style2">
+					<h3 class="m_title_special golden-clr" style="text-align:center">{{testimonal.title}}</h3>
+					<ul class="posts">
+						<li class="post">
+							<div class="details">
+								<span class="date">07/08/2015</span><span class="cat">in <a href="blog.html">Mobile</a>, <a href="blog.html">Networking</a></span>
+							</div>
+							<div class="text">
+								{{testimonal.description}}
+							</div>
+						</li>
+					</ul>
+				</div>
+			</li>
+			</slick>
+
+            <section class="hg_section--relative ptop-0 pbottom-0 golden-bg-clr">
+            <div class="kl-bg-source">
+                <div class="kl-bg-source__overlay-gloss">
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="row">
+                            <!-- <div class="col-md-offset-1 col-md-2 col-sm-2">
+                                <div class="kl-iconbox kl-iconbox--align-center text-center kl-iconbox--theme-light ">
+                                    <div class="kl-iconbox__inner">
+                                        <div style="position:relative;top:15px;" class="kl-iconbox__icon-wrapper ">
+                                            <img   class="kl-iconbox__icon fs-60 white" src="assets/images/freedelivery.png">
+                                        </div>
+                                        <!-- /.kl-iconbox__icon-wrapper -->
+                                       <!--  <div  class="kl-iconbox__content-wrapper">
+                                            <div class=" kl-iconbox__el-wrapper kl-iconbox__desc-wrapper">
+                                                <p class="kl-iconbox__desc">
+                                                    <span  class="fs-medium">FREE DELIVERY</span>
+                                                    
+                                                </p>
+                                            </div>
+                                        </div> -->
+                                        <!-- /.kl-iconbox__content-wrapper -->
+                               <!--      </div>
+                                </div>
+                            </div>  -->
+                            <div class="col-md-offset-2 col-md-2 col-sm-2">
+                                <div class="kl-iconbox kl-iconbox--align-center text-center kl-iconbox--theme-light ">
+                                    <div class="kl-iconbox__inner">
+                                        <div style="position:relative;top:5px;"  class="kl-iconbox__icon-wrapper ">
+                                            <img  class="kl-iconbox__icon" src="assets/images/customersupport.png">
+                                        </div>
+                                        <!-- /.kl-iconbox__icon-wrapper -->
+                                        <div class="kl-iconbox__content-wrapper">
+                                            <div class=" kl-iconbox__el-wrapper kl-iconbox__desc-wrapper">
+                                                <p class="kl-iconbox__desc">
+                                                    <span class="fs-medium">SUPPORT</span>
+                                                    
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- /.kl-iconbox__content-wrapper -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <div class="kl-iconbox kl-iconbox--align-center text-center kl-iconbox--theme-light ">
+                                    <div class="kl-iconbox__inner">
+                                        <div class="kl-iconbox__icon-wrapper ">
+                                            <img style="padding-top:15px"  class="kl-iconbox__icon" src="assets/images/great-offers.png">
+                                        </div>
+                                        <!-- /.kl-iconbox__icon-wrapper -->
+                                        <div class="kl-iconbox__content-wrapper">
+                                            <div class=" kl-iconbox__el-wrapper kl-iconbox__desc-wrapper">
+                                                <p class="kl-iconbox__desc">
+                                                    <span class="fs-medium">GREAT OFFERS</span>
+                                                    
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- /.kl-iconbox__content-wrapper -->
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-md-2 col-sm-2">
+                                <div class="kl-iconbox kl-iconbox--align-center text-center kl-iconbox--theme-light ">
+                                    <div class="kl-iconbox__inner">
+                                        <div style="position:relative;top:10px;" class="kl-iconbox__icon-wrapper ">
+                                            <img class="kl-iconbox__icon" src="assets/images/bestprice.png">
+                                        </div>
+                                        <!-- /.kl-iconbox__icon-wrapper -->
+                                        <div class="kl-iconbox__content-wrapper">
+                                            <div class=" kl-iconbox__el-wrapper kl-iconbox__desc-wrapper">
+                                                <p class="kl-iconbox__desc">
+                                                    <span class="fs-medium">BEST PRICE</span>
+                                                    
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- /.kl-iconbox__content-wrapper -->
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-md-2 col-sm-2">
+                                <div class="kl-iconbox kl-iconbox--align-center text-center kl-iconbox--theme-light ">
+                                    <div class="kl-iconbox__inner">
+                                        <div style="position:relative;top:10px;" class="kl-iconbox__icon-wrapper ">
+                                            <img class="kl-iconbox__icon" src="assets/images/widevariety.png">
+                                        </div>
+                                        <!-- /.kl-iconbox__icon-wrapper -->
+                                        <div  class="kl-iconbox__content-wrapper">
+                                            <div class=" kl-iconbox__el-wrapper kl-iconbox__desc-wrapper">
+                                                <p  class="kl-iconbox__desc">
+                                                    <span class="fs-medium">WIDE VARIETY</span>
+                                                    
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- /.kl-iconbox__content-wrapper -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+     
+                </div>
+            </div>
+        </section>
+<div id="flyingcontainer" style="position:absolute;width:1px;height:1px;z-index:999"></div>
+        <section class="hg_section--relative bg-white section-shadow ptop-65 pbottom-0">
+                <div class="row">
+    
+                        <div class="shop-latest">
+                            <div class="tabbable">
+                                <ul class="nav fixclear">
+                                    <li ng-class="(isactive=='tab1')?'active':''"><a href="" ng-click="onTabClick('tab1')" >NEW ARRIVALS</a></li>
+                                    <li ng-class="(isactive=='tab2')?'active':''"><a href="" ng-click="onTabClick('tab2')" >BEST SELLERS</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                            <ul class="featured_products"  ng-if="viewLoaded" id="" style="padding-right:40px">
+												<slick infinite=false  settings="slickConfig">
+												<li ng-repeat="(key,book) in Books track by $index" ng-if="$index<(Books.length/3)-1">
+
+													<book-tpl book="book" isfromlanding="true" ></book-tpl>
+
+												</li>
+												</slick>
+											</ul>	
+                                </div>
+								
+								<div class="tab-content">
+									<ul class="featured_products"  ng-if="viewLoaded" id="" style="padding-right:40px">
+										<slick infinite=false  settings="slickConfig">
+										<li ng-repeat="(key,book) in Books track by $index" ng-if="$index>(Books.length/3)-1 && $index<(2*Books.length/3)-1">
+
+											<book-tpl book="book" isfromlanding="true" ></book-tpl>
+
+										</li>
+										</slick>
+									</ul>	
+								</div>
+								
+								<div class="tab-content">
+									<ul class="featured_products"  ng-if="viewLoaded" id="" style="padding-right:40px">
+										<slick infinite=false  settings="slickConfig">
+										<li ng-repeat="(key,book) in Books track by $index" ng-if="$index>(2*Books.length/3)-1">
+
+											<book-tpl book="book" isfromlanding="true" ></book-tpl>
+
+										</li>
+										</slick>
+									</ul>	
+								</div>
+                            </div>
+                            <!-- /.tabbable / spp-products-rows -->
+                        </div>
+                        <!-- end shop latest -->
+                </div>
+        </section>

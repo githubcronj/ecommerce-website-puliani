@@ -1,0 +1,50 @@
+<ng-include src="'components/tpl/addAddressModal.html'"></ng-include>
+<section id="content" class="hg_section ptop-60">          
+			<div class="container">
+				<div class="row">
+					<div class="right_sidebar col-md-12">
+						<div class="kl-title-block clearfix text-left tbk-symbol--line  tbk-icon-pos--after-title">
+							<h2 class="tbk__title montserrat fs-34 fw-semibold black">DELIVERY ADDRESS</h2>
+
+							<span class="tbk__symbol ">
+								<span></span>
+							</span>
+							<br/>
+							<div class="col-md-offset-1">
+							<input type="submit" class="button" name="login" style="background:#000" value="Add Address" ng-click="openAddress('md','add','','')"/><br/>
+                            <span style="font-style:italic" ng-if="userAddress.length>0">Choose an address below or add a new address to continue</span>
+                            <h4 ng-if="userAddress.length==0">No address saved</h4>
+
+							</div>
+
+						</div>
+						<div class="text_box">
+							<div class="kl-store">
+							<div class="row">
+								 <div class="col-md-4 col-md-offset-1" ng-repeat="(key,value) in userAddress">
+									<div class="panel panel-default panel-hover-effect" ng-click="onAddressSelect(key)">
+										<div class="panel-heading"><img src="assets/images/green-tick.png" height="20" width="20" ng-if="selectedAddressKey==key"/>{{value.name}} <span class="glyphicon glyphicon-pencil pull-right glyph-hover-effect" ng-click="openAddress('md','edit',value,key)"></span><span class="glyphicon glyphicon-trash pull-right glyph-hover-effect" ng-click="onAddressDelete(key)">&nbsp;</span></div>
+										<div class="panel-body" style="word-break:break-all">
+											<p>{{value.address}} <br/>
+											{{value.city}}, {{value.pincode}}<br/>
+											{{value.state}}<br/>
+											{{value.landmark}}</p>
+											<hr style="margin-top:10px;margin-bottom:10px" />
+											<span>{{value.phone}}</span>
+											<hr style="margin-top:10px;margin-bottom:10px" />
+										</div>
+									</div>	
+								  </div>
+							</div>
+							
+							</div>
+						</div>
+							<div class="pull-right col-md-3">
+<!--							<input type="submit" class="button golden-bg" name="login" value="Next" ng-click="switchToView('switch-review')" ng-if="(selectedAddressKey>=0)" />-->
+<!--                            <input type="submit" class="button golden-bg" name="login" value="Next" ng-click="switchToView('switch-review')" ng-disabled="!(selectedAddressKey >= 0)" />-->
+                                <input type="submit" class="button golden-bg" name="login" value="Next" ng-click="switchToView('switch-review')" ng-disabled="userAddress.length == 0" />
+							</div>
+					</div>		
+				</div>	
+			</div>
+		</section>

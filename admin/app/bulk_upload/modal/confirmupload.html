@@ -1,0 +1,27 @@
+<script type="text/ng-template" id="confirmupload.html">
+      <div class="modal-header">
+        <label>Confirmation</label>
+        <a style="cursor:pointer" type="button" class="pull-right" ng-click="cancel()">X</a>
+      </div>
+
+      <div class="modal-body">
+        <div class="portlet-body">
+                                  
+            <div>
+                <label>Found {{noOfProducts}} Products.</label>
+            </div>
+            <div>
+                <label>Found Images for {{noOfProducts - noImages}} Products.</label>
+            </div>
+            <div>
+                <label>Found categories for {{noOfProducts - noCategory}} products</label>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary pull-right" ng-click="close(true)">Yes, Upload</button>
+        <button style="margin-right:20px" type="button" class="btn btn-danger pull-right" ng-click="close(false)">Cancel</button>
+      </div>
+
+
+  </script>
